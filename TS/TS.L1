@@ -1,0 +1,50 @@
+whireshark:
+-promisc?
+-filtry: DNS traffic, traffic na konkretny IP z konkretnego IP, UDP, TCP, TLS Handshake
+-inspekcja pakietow - TLS - dane certyfikatu wylowic
+-laczenie pakietow (kontent) - np. dla strony www
+
+traceroute:
+-q
+-w
+-i
+-m
+-f
+
+ping:
+-jak ustawic ttl? time to leave
+-jak przejsc z ip na adres strony i odwrotnie | uzywajac samego ping www.google.pl pokazywane jest ip 
+-traceroute pingiem
+for i in {1..30}; do ping -t $i -c 1 google.pl | grep "Time to live exceeded"
+-jak sprawdzic ile hopow z serwera do nas, reverse traceroute
+-weryfikowanie przepustowosci sieci, zadac payload albo rozmiar, ile bedzie prznosil w bramce danych
+- znajdowanie nazwy przez ping -a 123.123.12.312.3
+Sprawozdanie:
+
+-wireshark:
+	-
+-ping:
+	
+    1)-Wykorzystac ping by okreslic dlugosc sciezki od nas do wybranego przez nas hosta| mozna iteracyjnie ttl, przy 
+    jakim zaczynaja docierac do hosta
+	
+    2)-Na podstawie odpowiedzi pinga okreslic dlugosc sciezki od hosta do nas, na podstawie ttl OS (nmap)(mmap), jak wiemy 
+    jakie wartosci domyslie sa wpisywane w ttl na tej podstawie mozemy sprawdzac patrzac jaka wartosc ttl wraca do ans
+     w odpowiedziach mozemy okreslic dlugosc sciezki
+	
+    -Powyzsze punkty 1) 2) przetestowac dla serwera anglosaskiego/europejskiego i dla alibaby| wchodzenie w siec wirtualna
+	duze ttl opisac co dziwnego
+
+	3) -punkty 1 i 2 zrobic tez przy ustawionym bicie niefragmentacji i przy roznych rozmiarach pakietow
+		MTU? host -> route(MTU) -> route
+		Mtu moze byc ustawiony na jakis rozmiar np 1 KB czyli pakiet moze miec max 1 kb jak przychodzi(wiekszy) i nie 
+        jest ustawiony bit niefragmentuj to jest szatkowany i dopiero na hoscie docelowym jest scalany, przy ustawionym 
+        bedzie cie starac znalezc odpowiednia sciezke z wystarczajacym MTU
+
+	4) -okreslic jak wygladaja opoznienia w punktach 1) 2) 3)
+
+	5) Wiresharkiem okreslic algorytm dla klucza asymetrycznego ktorym posluguje sie serwer TLS.
+
+----------------------------------------------------------
+Fragmentacja:
+

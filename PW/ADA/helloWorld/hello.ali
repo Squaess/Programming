@@ -1,11 +1,13 @@
 V "GNAT Lib v6"
 M P W=b
+A -mtune=generic
+A -march=x86-64
 P ZX
 
 RN
 RV NO_IO
 
-U hello%b		hello_world_1.adb	902ab541 NE OO SU
+U hello%b		hello.adb		902ab541 NE OO SU
 W ada%s			ada.ads			ada.ali
 W ada.text_io%s		a-textio.adb		a-textio.ali
 
@@ -16,7 +18,7 @@ D a-stream.ads		20170308151938 119b8fb3 ada.streams%s
 D a-tags.ads		20170308151938 01f5e3ef ada.tags%s
 D a-textio.ads		20170308151938 386df5d4 ada.text_io%s
 D a-unccon.ads		20170308151943 f9eb8f06 ada.unchecked_conversion%s
-D hello_world_1.adb	20170308161937 a8474095 hello%b
+D hello.adb		20170315152032 a8474095 hello%b
 D interfac.ads		20170308151943 4be8ce1b interfaces%s
 D i-cstrea.ads		20170308151938 e53d8b8e interfaces.c_streams%s
 D system.ads		20170308151943 6326c08a system%s
@@ -32,10 +34,10 @@ D s-traent.ads		20170308151938 005bf670 system.traceback_entries%s
 D s-unstyp.ads		20170308151943 9d58a4c0 system.unsigned_types%s
 D s-wchcon.ads		20170308151938 1b7d22d2 system.wch_con%s
 X 1 ada.ads
-16K9*Ada 19e8 8|1r6 5r17
+16K9*Ada 19e8 8|1r6 5r9
 X 6 a-textio.ads
-49K13*Text_IO 471e16 8|1w10 5r21
-263U14*Put_Line 8|5s29
-X 8 hello_world_1.adb
-3U11*Hello 3b11 6l13 6t18
+49K13*Text_IO 471e16 8|1w10 5r13
+263U14*Put_Line 8|5s21
+X 8 hello.adb
+3U11*Hello 3b11 6l5 6t10
 

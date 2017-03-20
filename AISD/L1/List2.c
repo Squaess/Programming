@@ -3,6 +3,7 @@
 #include <stdio.h>
 
 int size = 0;
+
 typedef struct node {
     int value;
     struct node *next;
@@ -74,7 +75,7 @@ void lprintf(node_t *head) {
 
     while(tmp->prev != head){
         tmp = tmp->prev;
-        printf("%d ",tmp->value);
+        printf("%d \n",tmp->value);
         if(tmp == NULL){
             break;
         }
@@ -155,8 +156,10 @@ int main() {
     add(head,14);
     add(sec,22);
     add(sec,23);
-
     merge(head, sec);
-//    lprintf(head);
 
+//    delete(&head,1);
+//    delete(&head,1);
+//    lprintf(head);
+//    free(head);
 }

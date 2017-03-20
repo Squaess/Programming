@@ -23,7 +23,7 @@ int get() {
         first = first + 1;
         return fifo[n];
     } else{
-        printf("No more items in queue");
+        printf("Nie ma wiecej argumentow w kolejce");
     }
 }
 

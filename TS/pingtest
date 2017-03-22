@@ -1,0 +1,11 @@
+
+PING openhost.co.nz (119.47.118.9) 40000(40028) bytes of data.
+
+--- openhost.co.nz ping statistics ---
+5 packets transmitted, 2 received, 60% packet loss, time 4044ms
+rtt min/avg/max/mdev = 350.856/381.982/413.108/31.126 ms
+PING openhost.co.nz (119.47.118.9) 56(84) bytes of data.
+
+--- openhost.co.nz ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4004ms
+rtt min/avg/max/mdev = 311.061/352.905/397.763/30.732 ms

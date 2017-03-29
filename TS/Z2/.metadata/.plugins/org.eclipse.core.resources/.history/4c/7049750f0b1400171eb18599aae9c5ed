@@ -1,0 +1,411 @@
+import java.util.Random;
+
+import org.jgrapht.alg.ConnectivityInspector;
+import org.jgrapht.graph.DefaultWeightedEdge;
+import org.jgrapht.graph.SimpleWeightedGraph;
+
+public class Network {
+	private static int N = 20;
+	private static int liczbaTestow = 100000;
+	
+	private Network() {}
+	
+	
+	public static SimpleWeightedGraph<String, DefaultWeightedEdge> generate(int numberOfVertices) {
+		SimpleWeightedGraph<String, DefaultWeightedEdge> graph = new SimpleWeightedGraph<String, DefaultWeightedEdge>(DefaultWeightedEdge.class);
+		for(int i = 1; i <= numberOfVertices; i++) {
+			String v = "v" + Integer.toString(i);
+			graph.addVertex(v);
+		}
+		
+		for(int i = 1; i< numberOfVertices; i++) {
+			String v1 = "v" + Integer.toString(i);
+			String v2 = "v" + Integer.toString(i+1);
+			double dur = 0.95;
+			
+			DefaultWeightedEdge edge = graph.addEdge(v1, v2);
+			graph.setEdgeWeight(edge, dur);
+		}
+		
+		return graph;
+	
+	}
+	
+	public static void test1() {
+		
+		int zle = 0;
+
+		for(int i = 0; i < liczbaTestow; i++) {
+			if(!testNetwork(generate(N))) zle++; 
+		}
+		double p = (liczbaTestow - zle)/(liczbaTestow * 1.0) * 100.0;
+		System.out.println(p);
+	}
+	
+	public static SimpleWeightedGraph<String, DefaultWeightedEdge> gen2() {
+		SimpleWeightedGraph<String, DefaultWeightedEdge> graph = generate(N);
+		DefaultWeightedEdge edge = graph.addEdge("v1", "v20"); 
+		graph.setEdgeWeight(edge, 0.95);
+		
+		return graph;
+		
+	}
+	
+	public static void test2() {
+		int zle = 0;
+
+		for(int i = 0; i < liczbaTestow; i++) {
+			if(!testNetwork(gen2())) zle++; 
+		}
+		double p = (liczbaTestow - zle)/(liczbaTestow * 1.0) * 100.0;
+		System.out.println(p);
+	}
+	
+	public static SimpleWeightedGraph<String, DefaultWeightedEdge> gen3() {
+		SimpleWeightedGraph<String, DefaultWeightedEdge> graph = gen2();
+		
+		DefaultWeightedEdge edge = graph.addEdge("v1", "v10"); 
+		graph.setEdgeWeight(edge, 0.8);
+		
+		DefaultWeightedEdge edge2 = graph.addEdge("v5", "v15"); 
+		graph.setEdgeWeight(edge2, 0.7);
+		
+		return graph;
+	}
+	
+	public static void test3(){
+		int zle = 0;
+
+		for(int i = 0; i < liczbaTestow; i++) {
+			if(!testNetwork(gen3())) zle++; 
+		}
+		double p = (liczbaTestow - zle)/(liczbaTestow * 1.0) * 100.0;
+		System.out.println(p);
+	}
+	
+	public static SimpleWeightedGraph<String, DefaultWeightedEdge> gen4() {
+		SimpleWeightedGraph<String, DefaultWeightedEdge> graph = gen3();
+		
+		for(int i = 0; i < 4; i++) {
+			int p = 0;
+			int d = 0;
+			while(p == d){
+			
+				Random r = new Random();
+				p = r.nextInt(N) + 1;
+				d = r.nextInt(N) + 1;
+			}
+			
+			DefaultWeightedEdge edge = graph.addEdge("v"+Integer.toString(p), "v"+Integer.toString(d));
+			graph.setEdgeWeight(edge, 0.4);
+		}
+		return graph;
+	}
+	
+	public static void test4() {
+		int zle = 0;
+
+		for(int i = 0; i < liczbaTestow; i++) {
+			if(!testNetwork(gen4())) zle++; 
+		}
+		double p = (liczbaTestow - zle)/(liczbaTestow * 1.0) * 100.0;
+		System.out.println(p);
+	}
+	public static boolean testNetwork(SimpleWeightedGraph<String, DefaultWeightedEdge> graph){
+		for(int i=1; i<=N; i++)
+        {	
+    		for(int j=1; j<=N; j++)
+    		{
+    			if(i < j)
+    			{
+    				String vertex1 = "v" + Integer.toString(i);
+        			String vertex2 = "v" + Integer.toString(j);
+        				
+        			if(graph.containsEdge(vertex1, vertex2))
+        			{
+        				Random generator = new Random();
+        				double p = generator.nextInt(10000+1)/10000.0;
+        				if(p > graph.getEdgeWeight(graph.getEdge(vertex1, vertex2)))
+        				{
+        					graph.removeEdge(vertex1, vertex2);
+        				}
+    				}
+    			}
+        	}
+    	
+    		ConnectivityInspector inspector = new ConnectivityInspector(graph);
+        	if(!inspector.isGraphConnected())
+    		{
+    			return false;
+    		}
+        }
+
+    	return true;
+	}
+	
+	public static void main (String[] args) {
+		test1();
+		test2();
+		test3();
+		test4();
+	}
+}
+
+//
+//import java.util.ArrayList;
+//import java.util.List;
+//import java.util.Random;
+//
+//import org.jgrapht.*;
+//import org.jgrapht.graph.*;
+//import org.jgrapht.alg.*;
+//
+////*****
+//import javax.swing.JFrame;
+//
+//import org.jgraph.JGraph;
+//import org.jgrapht.ext.JGraphModelAdapter;
+////****
+//
+//public class Network
+//{	
+//	private static int numberOfVertices = 20;
+//	
+//    private Network()
+//    {
+//
+//    }
+//    
+//    private static boolean testNetwork(SimpleWeightedGraph<String, DefaultWeightedEdge> graph)
+//    {    	 		
+//    	for(int i=1; i<=numberOfVertices; i++)
+//        {	
+//    		for(int j=1; j<=numberOfVertices; j++)
+//    		{
+//    			if(i < j)
+//    			{
+//    				String vertex1 = "v" + Integer.toString(i);
+//        			String vertex2 = "v" + Integer.toString(j);
+//        				
+//        			if(graph.containsEdge(vertex1, vertex2))
+//        			{
+//        				Random generator = new Random();
+//        				double p = generator.nextInt(10000+1)/10000.0;
+//        				if(p > graph.getEdgeWeight(graph.getEdge(vertex1, vertex2)))
+//        				{
+//        					graph.removeEdge(vertex1, vertex2);
+//        				}
+//    				}
+//    			}
+//        	}
+//    	
+//    		ConnectivityInspector inspector = new ConnectivityInspector(graph);
+//        	if(!inspector.isGraphConnected())
+//    		{
+//    			return false;
+//    		}
+//        }
+//
+//    	return true;
+//    }
+//    
+//    private static SimpleWeightedGraph<String, DefaultWeightedEdge> generateGraph1()
+//    {	
+//    	//Tworzenie grafu
+//    	SimpleWeightedGraph<String, DefaultWeightedEdge> graph = new SimpleWeightedGraph<String, DefaultWeightedEdge>(DefaultWeightedEdge.class); 
+//    	
+//    	//Dodawanie wierzcho³ków
+//    	for(int i=1; i<=numberOfVertices; i++)
+//    	{
+//    		String vertexName = "v" + Integer.toString(i);
+//    		graph.addVertex(vertexName);
+//    	}
+//    	
+//    	//Dodawanie krawêdzi
+//    	for(int j=1; j<=numberOfVertices-1; j++)
+//    	{
+//    		String vertex1 = "v" + Integer.toString(j);
+//    		String vertex2 = "v" + Integer.toString(j+1);
+//    		double durability = 0.95;
+//    		
+//    		DefaultWeightedEdge edge = graph.addEdge(vertex1, vertex2); 
+//    		graph.setEdgeWeight(edge, durability); 
+//    	}
+//    	
+//    	return graph;
+//    }
+//    
+//    private static SimpleWeightedGraph<String, DefaultWeightedEdge> generateGraph2()
+//    {	
+//    	//Tworzenie grafu #1
+//    	SimpleWeightedGraph<String, DefaultWeightedEdge> graph = generateGraph1();
+//    	
+//    	//Dodawanie dodatkowej krawêdzi {v1,v20}
+//    	DefaultWeightedEdge edge = graph.addEdge("v1", "v20"); 
+//		graph.setEdgeWeight(edge, 0.95);
+//    	
+//    	return graph;
+//    }
+//    
+//    private static SimpleWeightedGraph<String, DefaultWeightedEdge> generateGraph3()
+//    {	
+//    	//Tworzenie grafu #2
+//    	SimpleWeightedGraph<String, DefaultWeightedEdge> graph = generateGraph2();
+//    	
+//    	//Dodawanie dodatkowych krawêdzi {v1,v10}, {v5,v15}
+//    	DefaultWeightedEdge edge = graph.addEdge("v1", "v10"); 
+//		graph.setEdgeWeight(edge, 0.80);
+//		DefaultWeightedEdge edge2 = graph.addEdge("v5", "v15"); 
+//		graph.setEdgeWeight(edge2, 0.70);
+//    	
+//    	return graph;
+//    }
+//    
+//    private static SimpleWeightedGraph<String, DefaultWeightedEdge> generateGraph4()
+//    {	
+//    	//Tworzenie grafu #3
+//    	SimpleWeightedGraph<String, DefaultWeightedEdge> graph = generateGraph3();
+//    	
+//    	//Dodawanie 4 dodatkowych losowych krawêdzi
+//    	for(int i=0; i<4; i++)
+//    	{
+//    		int j = 0;
+//    		int k = 0;
+//    		while(j == k)
+//    		{
+//    			Random generator = new Random();
+//        		j = generator.nextInt(numberOfVertices) + 1;
+//        		k = generator.nextInt(numberOfVertices) + 1;
+//    		}
+//    		
+//    		String vertex1 = "v" + Integer.toString(j);
+//    		String vertex2 = "v" + Integer.toString(k);
+//    		
+//    		graph.addEdge(vertex1, vertex2); 
+//    		graph.setEdgeWeight(graph.getEdge(vertex1, vertex2), 0.40);
+//    	}
+//    	
+//    	return graph;
+//    }
+//    
+//    /* ** *** *** *** *** *** *** *** */
+//    
+//    private static void testGraph1(int numberOfTests)
+//    {
+//    	System.out.println("GRAF #1");
+//    	System.out.println(generateGraph1().toString());
+//    	System.out.println("Testowanie niezawodnoœci...");
+//    	
+//    	int numberOfFailures = 0;
+//    	
+//    	for(int i=0; i<numberOfTests; i++)
+//    	{
+//    		if(!testNetwork(generateGraph1()))
+//        	{
+//        		numberOfFailures++;
+//        	}
+//    	}
+//    	
+//    	System.out.println("Liczba prób: " + numberOfTests);
+//    	System.out.println("Liczba rozspójnieñ: " + numberOfFailures);
+//    	
+//    	double reliability = (numberOfTests - numberOfFailures)/(numberOfTests * 1.0) * 100.0;
+//    	
+//    	System.out.println("Niezawodnoœc sieci: " + reliability + "%");
+//    	System.out.println();
+//    }
+//    
+//    private static void testGraph2(int numberOfTests)
+//    {
+//    	System.out.println("GRAF #2  (dodana krawêdz {v1,v20})");
+//    	System.out.println(generateGraph2().toString());
+//    	System.out.println("Testowanie niezawodnoœci...");
+//    	
+//    	int numberOfFailures = 0;
+//    	
+//    	for(int i=0; i<numberOfTests; i++)
+//    	{
+//    		if(!testNetwork(generateGraph2()))
+//        	{
+//        		numberOfFailures++;
+//        	}
+//    	}
+//    	
+//    	System.out.println("Liczba prób: " + numberOfTests);
+//    	System.out.println("Liczba rozspójnieñ: " + numberOfFailures);
+//    	
+//    	double reliability = (numberOfTests - numberOfFailures)/(numberOfTests * 1.0) * 100.0;
+//    	
+//    	System.out.println("Niezawodnoœc sieci: " + reliability + "%");
+//    	System.out.println();
+//    }
+//    
+//    private static void testGraph3(int numberOfTests)
+//    {
+//    	System.out.println("GRAF #3  (dodana krawêdz {v1,v20}, {v1,v10}, {v5,v15})");
+//    	System.out.println(generateGraph3().toString());
+//    	System.out.println("Testowanie niezawodnoœci...");
+//    	
+//    	int numberOfFailures = 0;
+//    	
+//    	for(int i=0; i<numberOfTests; i++)
+//    	{
+//    		if(!testNetwork(generateGraph3()))
+//        	{
+//        		numberOfFailures++;
+//        	}
+//    	}
+//    	
+//    	System.out.println("Liczba prób: " + numberOfTests);
+//    	System.out.println("Liczba rozspójnieñ: " + numberOfFailures);
+//    	
+//    	double reliability = (numberOfTests - numberOfFailures)/(numberOfTests * 1.0) * 100.0;
+//    	
+//    	System.out.println("Niezawodnoœc sieci: " + reliability + "%");
+//    	System.out.println();
+//    }
+//    
+//    private static void testGraph4(int numberOfTests)
+//    {
+//    	System.out.println("GRAF #4  (dodana krawêdz {v1,v20}, {v1,v10}, {v5,v15} + 4 losowe)");
+//    	System.out.println(generateGraph4().toString());
+//    	System.out.println("Testowanie niezawodnoœci...");
+//    	
+//    	int numberOfFailures = 0;
+//    	
+//    	for(int i=0; i<numberOfTests; i++)
+//    	{
+//    		if(!testNetwork(generateGraph4()))
+//        	{
+//        		numberOfFailures++;
+//        	}
+//    	}
+//    	
+//    	System.out.println("Liczba prób: " + numberOfTests);
+//    	System.out.println("Liczba rozspójnieñ: " + numberOfFailures);
+//    	
+//    	double reliability = (numberOfTests - numberOfFailures)/(numberOfTests * 1.0) * 100.0;
+//    	
+//    	System.out.println("Niezawodnoœc sieci: " + reliability + "%");
+//    	System.out.println();
+//    }
+//    
+//    
+//    
+//    private static void display(SimpleWeightedGraph<String, DefaultWeightedEdge> graph)
+//    {
+//    	JFrame frame = new JFrame();
+//    	frame.setSize(400, 400);
+//    	JGraph jgraph = new JGraph(new JGraphModelAdapter(graph));
+//    	frame.getContentPane().add(jgraph);
+//    	frame.setVisible(true);
+//    }
+//    
+//    public static void main(String [] args)
+//    {
+//    	testGraph1(10000);
+//    	testGraph2(10000);
+//    	//testGraph3(100000);
+//    	//testGraph4(1000000);
+//	}
+//}

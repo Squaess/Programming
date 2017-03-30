@@ -108,7 +108,7 @@ public class Sort {
 	public static void quickSort(int[] A, int low, int high) {
 		
 		//partition
-		//rekurencynie dala twóch tablic
+		//rekurencynie dala dwoch tablic
 		int indexPivot = partition(A,low,high);
 		if(indexPivot == low) return;
 		quickSort(A,low,indexPivot-1);
@@ -211,7 +211,7 @@ public class Sort {
 				test(N,false);
 				break;
 			default:
-				System.out.println("Zly wybor spróboj jeszcze raz");
+				System.out.println("Zly wybor sproboj jeszcze raz");
 			}
 		}
 		
@@ -258,7 +258,7 @@ public class Sort {
 			}
 			compareKeys /= 1000;
 			swapKeys /= 1000;
-			System.out.println("Insertion sort Dla danych rozmiaru: "+i+" compare: "+compareKeys+" swap: "+swapKeys );
+			System.out.print(i+" "+ compareKeys+" "+swapKeys +" ");
 			for(j = 0; j < 1000; j++) {
 				if(czyRand) {
 					t = random(i);
@@ -274,7 +274,7 @@ public class Sort {
 			}
 			compareKeys /= 1000;
 			swapKeys /= 1000;
-			System.out.println("Merge sort Dla danych rozmiaru: "+i+" compare: "+compareKeys+" swap: "+swapKeys );
+			System.out.print(compareKeys+" "+swapKeys + " ");
 			for(j = 0; j < 1000; j++) {
 				if(czyRand) {
 					t = random(i);
@@ -290,7 +290,9 @@ public class Sort {
 			}
 			compareKeys /= 1000;
 			swapKeys /= 1000;
-			System.out.println("Quick sort Dla danych rozmiaru: "+i+" compare: "+compareKeys+" swap: "+swapKeys );
+			System.out.print(compareKeys+" "+swapKeys );
+			System.out.print("\n");
+			
 		}
 		
 	}

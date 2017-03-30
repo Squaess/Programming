@@ -7,10 +7,6 @@ public class Sort {
 	static int t[];
 	static int insertionCompareKeys;
 	static int insertionSwapKeys;
-	static int mergeCompareKeys;
-	static int mergeSwapKeys;
-	static int quickCompareKeys;
-	static int quickSwapKeys;
 	
 	/*
 	 * Tablica danych t , n to romiar tablicy
@@ -38,10 +34,10 @@ public class Sort {
 		}
 	}
 	
-	public static int[] mergeSort(int t[], int n) {
-		
+	public static int[] mergeSort(int t[], int n) throws Exception {
 		if(n == 0) {
-			return t;
+			throw new Exception("Brak Argumentów");
+			
 		}
 		if (n == 1) {
 			return t;
@@ -72,18 +68,13 @@ public class Sort {
 		int k = 0;			// indeks tablicy B
 		while(j < dlA && k < dlB) {
 			if(A[j]<B[k]) {
-				mergeCompareKeys++;
 				ret[j+k] = A[j];
-				mergeSwapKeys++;
 				j++;
 			} else if (A[j] > B[k]) {
-				mergeCompareKeys++;
 				ret[j+k] = B[k];
-				mergeSwapKeys++;
 				k++;
 			} else {
 				ret[j+k] = A[j];
-				mergeSwapKeys++;
 				j++;
 			}
 		}
@@ -91,13 +82,11 @@ public class Sort {
 		// wiemy ze pierwsza tablica juz skonczyla a w drugiej sa same wieksze elementy
 		
 		while(k < dlB) {
-			mergeSwapKeys++;
 			ret[j+k] = B[k];
 			k++;
 		}
 	
 		while(j < dlA) {
-			mergeSwapKeys++;
 			ret[j+k] = A[j];
 			j++;
 		}
@@ -120,21 +109,17 @@ public class Sort {
 	public static int partition(int[] A, int p, int q) {
 		if(p==q) return p;
 		int pivot  = A[p];
-		// i to indeks pivota
 		int i = p, tmp;
 		for(int j=p+1; j<q; j++) {
-			quickCompareKeys++;
 			if(A[j] <= pivot) {
 				
 				//swap A[j],a[i+1]
-				quickSwapKeys++;
 				i++;
 				tmp = A[j];
 				A[j] = A[i];
 				A[i] = tmp;		
 			}
 		}
-		quickSwapKeys++;
 		tmp = A[p];
 		A[p] = A[i];
 		A[i] = tmp;
@@ -162,7 +147,7 @@ public class Sort {
 		return ret;
 	}
 	
-	public static int[] desc(int N) {
+	public static int[] desc(int N) throws Exception{
 		
 		int ret[] = new int[N];
 		
@@ -258,41 +243,8 @@ public class Sort {
 			}
 			compareKeys /= 1000;
 			swapKeys /= 1000;
-			System.out.println("Insertion sort Dla danych rozmiaru: "+i+" compare: "+compareKeys+" swap: "+swapKeys );
-			for(j = 0; j < 1000; j++) {
-				if(czyRand) {
-					t = random(i);
-				} else {		
-					t = desc(i);	
-				}
-				//TODO sort array t and get average info
-				mergeCompareKeys = 0;
-				mergeSwapKeys = 0;
-				mergeSort(t,i);
-				compareKeys += mergeCompareKeys;
-				swapKeys += mergeSwapKeys;
-			}
-			compareKeys /= 1000;
-			swapKeys /= 1000;
-			System.out.println("Merge sort Dla danych rozmiaru: "+i+" compare: "+compareKeys+" swap: "+swapKeys );
-			for(j = 0; j < 1000; j++) {
-				if(czyRand) {
-					t = random(i);
-				} else {		
-					t = desc(i);	
-				}
-				//TODO sort array t and get average info
-				quickCompareKeys = 0;
-				quickSwapKeys = 0;
-				quickSort(t,0,i);
-				compareKeys += quickCompareKeys;
-				swapKeys += quickSwapKeys;
-			}
-			compareKeys /= 1000;
-			swapKeys /= 1000;
-			System.out.println("Quick sort Dla danych rozmiaru: "+i+" compare: "+compareKeys+" swap: "+swapKeys );
+			System.out.println("Dla danych rozmiaru: "+i+" compare: "+compareKeys+" swap: "+swapKeys );
 		}
-		
 	}
 	
 	

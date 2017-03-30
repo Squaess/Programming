@@ -9,8 +9,6 @@ public class Sort {
 	static int insertionSwapKeys;
 	static int mergeCompareKeys;
 	static int mergeSwapKeys;
-	static int quickCompareKeys;
-	static int quickSwapKeys;
 	
 	/*
 	 * Tablica danych t , n to romiar tablicy
@@ -120,21 +118,17 @@ public class Sort {
 	public static int partition(int[] A, int p, int q) {
 		if(p==q) return p;
 		int pivot  = A[p];
-		// i to indeks pivota
 		int i = p, tmp;
 		for(int j=p+1; j<q; j++) {
-			quickCompareKeys++;
 			if(A[j] <= pivot) {
 				
 				//swap A[j],a[i+1]
-				quickSwapKeys++;
 				i++;
 				tmp = A[j];
 				A[j] = A[i];
 				A[i] = tmp;		
 			}
 		}
-		quickSwapKeys++;
 		tmp = A[p];
 		A[p] = A[i];
 		A[i] = tmp;
@@ -275,22 +269,6 @@ public class Sort {
 			compareKeys /= 1000;
 			swapKeys /= 1000;
 			System.out.println("Merge sort Dla danych rozmiaru: "+i+" compare: "+compareKeys+" swap: "+swapKeys );
-			for(j = 0; j < 1000; j++) {
-				if(czyRand) {
-					t = random(i);
-				} else {		
-					t = desc(i);	
-				}
-				//TODO sort array t and get average info
-				quickCompareKeys = 0;
-				quickSwapKeys = 0;
-				quickSort(t,0,i);
-				compareKeys += quickCompareKeys;
-				swapKeys += quickSwapKeys;
-			}
-			compareKeys /= 1000;
-			swapKeys /= 1000;
-			System.out.println("Quick sort Dla danych rozmiaru: "+i+" compare: "+compareKeys+" swap: "+swapKeys );
 		}
 		
 	}

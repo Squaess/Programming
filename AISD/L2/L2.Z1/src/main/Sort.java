@@ -1,5 +1,6 @@
 package main;
 
+import java.util.LinkedList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -11,6 +12,8 @@ public class Sort {
 	static int mergeSwapKeys;
 	static int quickCompareKeys;
 	static int quickSwapKeys;
+	static int qmergeCompare;
+	static int qmergeSwap;
 	
 	/*
 	 * Tablica danych t , n to romiar tablicy
@@ -33,7 +36,7 @@ public class Sort {
 				insertionSwapKeys++;
 			}
 			if(j >= 0) insertionCompareKeys++;
-			insertionSwapKeys++;
+			
 			t[j+1] = key;
 		}
 	}
@@ -62,9 +65,6 @@ public class Sort {
 		return t;
 	}
 	
-	/***********************************************************************************
-	 * napisac drugiego merga na kolejce
-	 */
 	public static int[] merge(int A[], int dlA, int B[], int dlB) {
 		
 		int[] ret = new int[dlA+dlB];
@@ -116,6 +116,65 @@ public class Sort {
 		
 		
 	}
+	
+	public static void quemergeSort(int[] t) {
+		LinkedList<LinkedList<Integer>> Q = new LinkedList<LinkedList<Integer>>();
+		
+		for(int i = 0; i < t.length; i++) {
+			LinkedList<Integer> tmp = new LinkedList<Integer>();
+			tmp.add(t[i]);
+			Q.add(tmp);
+		}
+		
+		while(Q.size()>1) {
+			Q.add(quemerge(Q.poll(),Q.poll()));		
+		}
+		for(int i = 0; i< Q.size(); i++) {
+			for (int j = 0; j<Q.getFirst().size(); j++) {
+				t[j] = Q.getFirst().get(j);
+			}
+		}
+	}
+	
+	
+	public static LinkedList<Integer> quemerge(LinkedList<Integer> a, LinkedList<Integer> b) {
+		LinkedList<Integer> ret = new LinkedList<Integer>();
+	
+		int j;
+		int k;
+		
+		while((!a.isEmpty()) && (!b.isEmpty())) {
+			j = a.getFirst();
+			k = b.getFirst();
+			qmergeCompare++;
+			if(j<=k) {
+				qmergeSwap++;
+				ret.add(a.poll());
+				if(a.isEmpty()) {
+					qmergeSwap++;
+					ret.add(b.poll());
+					while(!b.isEmpty()) {
+						qmergeSwap++;
+						ret.add(b.poll());		
+					}
+				}
+			} else {
+				qmergeSwap++;
+				ret.add(b.poll());
+				if(b.isEmpty()) {
+					qmergeSwap++;
+					ret.add(a.poll());
+					while(!a.isEmpty()) {
+						qmergeSwap++;
+						ret.add(a.poll());	
+					}
+				}
+			}
+		}
+	
+		return ret;
+	}
+	
 	
 	public static int partition(int[] A, int p, int q) {
 		if(p==q) return p;
@@ -215,20 +274,13 @@ public class Sort {
 			}
 		}
 		
-		
-		
-//		insertionSort(t,t.length);
-//		try {
-//			t = mergeSort(t,t.length);
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		quickSort(t,0,t.length);
-		//int e = partition(t,0,t.length);
-		//System.out.println(e);
-//		drukuj(t);
 		input.close();
+
+//		t = random(10);
+//		drukuj(t);
+//		quemergeSort(t);
+//		drukuj(t)						
+		
 	}
 	/**
 	 * 
@@ -237,12 +289,15 @@ public class Sort {
 	public static void test(int N, boolean czyRand) {
 		int compareKeys = 0;
 		int swapKeys = 0;
+		System.out.println("N:  i-p  i-s  m-p  m-s  q-p  q-s");
 		for(int i = 0; i<N; i += 100) {	
 			int j = 0;
 			//wykonujemy 1000 razy dla danego i
+			
 			for(j = 0; j < 1000; j++) {
 				if(czyRand) {
 					t = random(i);
+					t = posort(i);
 				} else {
 					try {
 						t = desc(i);
@@ -259,9 +314,12 @@ public class Sort {
 			compareKeys /= 1000;
 			swapKeys /= 1000;
 			System.out.print(i+" "+ compareKeys+" "+swapKeys +" ");
+			compareKeys =0;
+			swapKeys =0;
 			for(j = 0; j < 1000; j++) {
 				if(czyRand) {
 					t = random(i);
+					t = posort(i);
 				} else {		
 					t = desc(i);	
 				}
@@ -275,9 +333,12 @@ public class Sort {
 			compareKeys /= 1000;
 			swapKeys /= 1000;
 			System.out.print(compareKeys+" "+swapKeys + " ");
+			compareKeys =0;
+			swapKeys =0;
 			for(j = 0; j < 1000; j++) {
 				if(czyRand) {
 					t = random(i);
+					t = posort(i);
 				} else {		
 					t = desc(i);	
 				}
@@ -297,5 +358,15 @@ public class Sort {
 		
 	}
 	
+	public static void testMerges() {
+		
+	}
 	
+	public static int[] posort(int i) {
+		int[] ret = new int[i];
+		for(int j = 0; j < i; j++) {
+			ret[j]=j;
+		}
+		return ret;
+	}
 }

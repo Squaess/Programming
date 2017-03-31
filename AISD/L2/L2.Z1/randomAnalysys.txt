@@ -1,0 +1,6 @@
+Exception in thread "main" java.lang.OutOfMemoryError: GC overhead limit exceeded
+	at java.util.LinkedList.linkLast(Unknown Source)
+	at java.util.LinkedList.add(Unknown Source)
+	at main.Sort.quemerge(Sort.java:141)
+	at main.Sort.quemergeSort(Sort.java:130)
+	at main.Sort.main(Sort.java:264)

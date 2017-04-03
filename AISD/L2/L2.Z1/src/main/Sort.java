@@ -294,10 +294,10 @@ public class Sort {
 			int j = 0;
 			//wykonujemy 1000 razy dla danego i
 			
-			for(j = 0; j < 1000; j++) {
+			for(j = 0; j < 10; j++) {
 				if(czyRand) {
 					t = random(i);
-					t = posort(i);
+//					t = posort(i);
 				} else {
 					try {
 						t = desc(i);
@@ -311,15 +311,15 @@ public class Sort {
 				compareKeys += insertionCompareKeys;
 				swapKeys += insertionSwapKeys;
 			}
-			compareKeys /= 1000;
-			swapKeys /= 1000;
+			compareKeys /= 10;
+			swapKeys /= 10;
 			System.out.print(i+" "+ compareKeys+" "+swapKeys +" ");
 			compareKeys =0;
 			swapKeys =0;
-			for(j = 0; j < 1000; j++) {
+			for(j = 0; j < 10; j++) {
 				if(czyRand) {
 					t = random(i);
-					t = posort(i);
+//					t = posort(i);
 				} else {		
 					t = desc(i);	
 				}
@@ -330,15 +330,15 @@ public class Sort {
 				compareKeys += mergeCompareKeys;
 				swapKeys += mergeSwapKeys;
 			}
-			compareKeys /= 1000;
-			swapKeys /= 1000;
+			compareKeys /= 10;
+			swapKeys /= 10;
 			System.out.print(compareKeys+" "+swapKeys + " ");
 			compareKeys =0;
 			swapKeys =0;
-			for(j = 0; j < 1000; j++) {
+			for(j = 0; j < 10; j++) {
 				if(czyRand) {
 					t = random(i);
-					t = posort(i);
+//					t = posort(i);
 				} else {		
 					t = desc(i);	
 				}
@@ -349,8 +349,8 @@ public class Sort {
 				compareKeys += quickCompareKeys;
 				swapKeys += quickSwapKeys;
 			}
-			compareKeys /= 1000;
-			swapKeys /= 1000;
+			compareKeys /= 10;
+			swapKeys /= 10;
 			System.out.print(compareKeys+" "+swapKeys );
 			System.out.print("\n");
 			

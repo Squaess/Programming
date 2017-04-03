@@ -1,9 +1,9 @@
 Wybierz odpowiednia liczbe: 
 1. Losowy ciag
 2. Ciag malejacy
-Podaj wielkosc danych: 
-0 0 0 0 0 0 0
-100 2571 2476 544 674 514 301
-200 10161 9967 1291 1553 1277 724
-300 22693 22399 2119 2510 2141 1207
-400 40256 39862 3001 3527 3094 1727
+Exception in thread "main" java.util.NoSuchElementException
+	at java.util.Scanner.throwFor(Scanner.java:862)
+	at java.util.Scanner.next(Scanner.java:1485)
+	at java.util.Scanner.nextInt(Scanner.java:2117)
+	at java.util.Scanner.nextInt(Scanner.java:2076)
+	at main.Sort.main(Sort.java:255)

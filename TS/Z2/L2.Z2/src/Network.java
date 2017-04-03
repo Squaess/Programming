@@ -43,7 +43,7 @@ public class Network {
 		return graph;
 	}
 	
-	public static void testNetwork(int N, double p, double Tmax)
+	private static void testNetwork(int N, double p, double Tmax)
 	{		
 		int success = 0;
 		int failure = 0;
@@ -67,14 +67,14 @@ public class Network {
 			}
 		}
 		
-		System.out.println("Iloœc prób: " + N);	
-		System.out.println("Iloœc sukcesów: " + success);	
-		System.out.println("Iloœc pora¿ek: " + failure);
-		System.out.println("Iloœc rozspójnieñ: " + disconnect);
+		System.out.println("Iloï¿½c prï¿½b: " + N);	
+		System.out.println("Iloï¿½c sukcesï¿½w: " + success);	
+		System.out.println("Iloï¿½c poraï¿½ek: " + failure);
+		System.out.println("Iloï¿½c rozspï¿½jnieï¿½: " + disconnect);
 		
 		double reliability = (N*1.0 - (failure + disconnect)*1.0)/(N * 1.0) * 100.0;
 		
-		System.out.println("Niezawodnoœc: " + reliability + "%");
+		System.out.println("Niezawodnoï¿½c: " + reliability + "%");
 	}
 	
 	public static void main(String[] args)

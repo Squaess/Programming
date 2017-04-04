@@ -20,13 +20,13 @@ public class mojGraph {
 	
 	private List<List<Double>> N = new ArrayList<List<Double>>();
 
-	public void addVertex(String vertexName)
+	void addVertex(String vertexName)
 	{
 		vertices.add(vertexName);
 		graph.addVertex(vertexName);
 	}
 	
-	public void addEdge(String vertex1, String vertex2, double c)
+	void addEdge(String vertex1, String vertex2, double c)
 	{
 		if(graph.containsEdge(vertex1, vertex2) || graph.containsEdge(vertex2, vertex1))
 		{
@@ -40,7 +40,7 @@ public class mojGraph {
         graph.setEdgeWeight(e, 0); 
 	}
 	
-	public void deleteEdge(String vertex1, String vertex2)
+	private void deleteEdge(String vertex1, String vertex2)
 	{	
 		if(graph.containsEdge(vertex1, vertex2))
 		graph.removeEdge(vertex1, vertex2);
@@ -64,7 +64,7 @@ public class mojGraph {
 		}
 	}
 	
-	public void clearConnections()
+	void clearConnections()
 	{
 		N.clear();
 		
@@ -90,7 +90,7 @@ public class mojGraph {
 		System.out.println(graph.toString());
 	}
 	
-	public void sendPacket(String vertex1, String vertex2, int packetSize)
+	void sendPacket(String vertex1, String vertex2, int packetSize)
 	{
 		if(vertex1.contentEquals(vertex2))
 		{
@@ -107,7 +107,7 @@ public class mojGraph {
 			
 			String[] parts = S.split(" : ");
 			
-			//Szukanie ID wierzcho³ków
+			//Szukanie ID wierzchoï¿½kï¿½w
 			int ID1 = 0, ID2 = 0;
 			for(int j=0; j<vertices.size(); j++)
 			{
@@ -117,7 +117,7 @@ public class mojGraph {
 					ID2 = j;
 			}
 		
-			//Wpisywanie do macierzy natê¿eñ
+			//Wpisywanie do macierzy natï¿½eï¿½
 			List<Double> L = N.get(ID1);
 			double value = L.get(ID2);
 			value = value + packetSize;
@@ -139,7 +139,7 @@ public class mojGraph {
 			String vertex1 = edge.v1();
 			String vertex2 = edge.v2();
 			
-			//Szukanie ID wierzcho³ków
+			//Szukanie ID wierzchoï¿½kï¿½w
 			int ID1 = 0, ID2 = 0;
 			for(int j=0; j<vertices.size(); j++)
 			{
@@ -149,7 +149,7 @@ public class mojGraph {
 					ID2 = j;
 			}
 			
-			//Sprawdzanie macierzy natê¿eñ
+			//Sprawdzanie macierzy natï¿½eï¿½
 			double value = 0;
 			List<Double> L = N.get(ID1);
 			value += L.get(ID2);
@@ -159,7 +159,7 @@ public class mojGraph {
 			
 			if(value > edge.getCapacity())
 			{
-				System.out.println("£¹cze " + vertex1 + "-" + vertex2 + " przeci¹¿one! (" + value + "/" + edge.getCapacity() + ")");	
+				System.out.println("ï¿½ï¿½cze " + vertex1 + "-" + vertex2 + " przeciï¿½ï¿½one! (" + value + "/" + edge.getCapacity() + ")");	
 			}
 		}
 		
@@ -167,14 +167,14 @@ public class mojGraph {
 	
 	public void displayInformation()
 	{
-		System.out.println("\nInformacje o ³¹czach: ");
+		System.out.println("\nInformacje o ï¿½ï¿½czach: ");
 		for(int i=0; i<edges.size(); i++)
 		{
 			MyEdge edge = edges.get(i);
 			String vertex1 = edge.v1();
 			String vertex2 = edge.v2();
 			
-			//Szukanie ID wierzcho³ków
+			//Szukanie ID wierzchoï¿½kï¿½w
 			int ID1 = 0, ID2 = 0;
 			for(int j=0; j<vertices.size(); j++)
 			{
@@ -184,7 +184,7 @@ public class mojGraph {
 					ID2 = j;
 			}
 			
-			//Sprawdzanie macierzy natê¿eñ
+			//Sprawdzanie macierzy natï¿½eï¿½
 			double value = 0;
 			List<Double> L = N.get(ID1);
 			value += L.get(ID2);
@@ -193,17 +193,17 @@ public class mojGraph {
 			value += L2.get(ID1);
 			
 
-			System.out.println("£¹cze " + vertex1 + "-" + vertex2 + ": natê¿enie pakietów " + value + ", przepustowoœc " + edge.getCapacity());
+			System.out.println("ï¿½ï¿½cze " + vertex1 + "-" + vertex2 + ": natï¿½enie pakietï¿½w " + value + ", przepustowoï¿½c " + edge.getCapacity());
 		}
 		
-		System.out.println("\nMacierz natê¿eñ: ");
+		System.out.println("\nMacierz natï¿½eï¿½: ");
 		System.out.println(Arrays.deepToString(N.toArray()));
 		
 	}
 	
-	public double getDelay()
+	double getDelay()
 	{
-		//G = suma elementów macierzy natê¿eñ
+		//G = suma elementï¿½w macierzy natï¿½eï¿½
 		double G = 0;
 		for(int i=0; i<N.size(); i++)
 		{
@@ -214,7 +214,7 @@ public class mojGraph {
 			}
 		}
 		
-		//m = œrednia wielkoœc pakietu
+		//m = ï¿½rednia wielkoï¿½c pakietu
 		double m = (sumOfPacketsSize * 1.0)/(numberOfPackets * 1.0);
 		
 		//Liczenie sumy
@@ -258,7 +258,7 @@ public class mojGraph {
 		return (1/G) * SUM;
 	}
 	
-	public void test(double p)
+	void test(double p)
 	{
 		for(int i=0; i<edges.size(); i++)
 		{
@@ -275,7 +275,7 @@ public class mojGraph {
 		}
 	}
 	
-	public boolean isItConnected()
+	boolean isItConnected()
 	{
 		ConnectivityInspector inspector = new ConnectivityInspector(graph);
     	if(!inspector.isGraphConnected())

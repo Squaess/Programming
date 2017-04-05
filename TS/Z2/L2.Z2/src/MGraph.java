@@ -133,7 +133,7 @@ class MGraph {
     void printFlow() {
         System.out.println("Wyswietlenie wynikow dla krawedzi");
         for (MEdge edge : edges) {
-            System.out.print(edge.getV1()+" - "+edge.getV2()+" Przplyw: "+edge.getFlow()+ " Max Natezenie: " + edge.getCapacity()+ " " + "Ilosc pakietow przeplywajacych " + edge.getNumberOfPackets()+" ");
+            System.out.print(edge.getV1()+" - "+edge.getV2()+" Przplyw: "+edge.getFlow()+ " c(v) = " + edge.getCapacity()+ " " + "a(v) = " + edge.getNumberOfPackets()+" ");
             if(edge.getFlow() >= edge.getCapacity()) {
                 System.out.print("Przeciacenie krawedzi !!!!");
             }

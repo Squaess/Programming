@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 
 public class Network {
-	private static final String FILENAME = ".\\Dane.txt";
+	private static final String FILENAME = "./Dane.txt";
 	private static MGraph graph = new MGraph();
 //private static mojGraph gen() {
 //		mojGraph graph = new mojGraph();

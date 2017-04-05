@@ -1,0 +1,3 @@
+poprawic justowanie
+zmienic szacowanan na testowana
+w 2 dodac ilosc testow

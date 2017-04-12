@@ -53,7 +53,7 @@ public class Network {
         }
     }
 
-    private static void testGenTraffic(MGraph test) {
+    private static boolean testGenTraffic(MGraph test) {
         try {
             BufferedReader input = new BufferedReader(new FileReader(FILENAME));
             int size = Integer.parseInt(input.readLine());
@@ -67,15 +67,17 @@ public class Network {
                 int v2 = 1;
                 for(String s : parts) {
                     if(v1 != v2) {
-                        test.sendPacket(v1,v2,Integer.parseInt(s));
+                        if(!test.sendPacket(v1,v2,Integer.parseInt(s))) {
+                            return false;
+                        }
                     }
                     v2++;
                 }
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return true;
     }
 
     private static MGraph genTestGraph(){
@@ -101,41 +103,47 @@ public class Network {
         int succes = 0;
         int failures = 0;
         int overload = 0;
+        int przeciazenie = 0;
 
         for(int i = 0; i < 1000; i++) {
             MGraph test = genTestGraph();
-            testGenTraffic(test);
+//            testGenTraffic(test);
             test.test(p);
             if(test.isConsistent()) {
-                if(test.avgPacketDeley()< t_max) {
-                    succes++;
-                } else overload++;
+                if(testGenTraffic(test)) {
+                    if (test.avgPacketDeley() < t_max) {
+                        succes++;
+                    } else overload++;
+                } else przeciazenie++;
             } else failures++;
         }
 
         System.out.println("Ilosc sukcesow: "+succes);
         System.out.println("Ilosc rozspojnien: "+failures);
         System.out.println("Ilosc przekroczonych opoznien: "+overload);
+        System.out.println("Ilosc przekroczonych przeciazen krawedzi "+ przeciazenie);
 
-        double reliability = (1000.0 - (failures + overload)*1.0)/(1000.0) * 100.0;
+        double reliability = (1000.0 - (failures + overload + przeciazenie)*1.0)/(1000.0) * 100.0;
 
-        System.out.println("Niezawodnosc sieci wynosi: "+ reliability+" %");
+        System.out.println("Testowana niezawodnosc sieci wynosi: "+ reliability+" %");
     }
 
 	public static void main(String[] args) {
-//		System.out.println("T = " + gen().getDelay());
-//		testNetwork(50000, 0.9, -0.001);
 		Scanner input = new Scanner(System.in);
 		System.out.println("Podaj prawdopodobienstwo p: ");
 		double p = input.nextDouble();
+
 		System.out.println("Podaj maksymalne opoznienie: ");
 		double t_max = input.nextDouble();
+
         gen();
 		System.out.println("Nasz graf to "+graph.toString());
         genNumberOfPackets();
         graph.printFlow();
         System.out.println("Srednie opoznienie pakietu : " + graph.avgPacketDeley());
         System.out.println("Badanie niezawodności sieci ...");
+        System.out.println("Prawdopodobienstwo nieuszkodzenia krawedzi: "+ p);
+        System.out.println("Maksymalne opoznienie pakietu: " + t_max);
         test(p,t_max);
 
 	}

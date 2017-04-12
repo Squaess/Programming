@@ -18,8 +18,12 @@ class MEdge {
         return this.flow;
     }
 
-    void setFlow(int value) {
+    boolean setFlow(int value) {
         this.flow += value;
+        if(flow >= capacity) {
+            return false;
+        }
+        return true;
     }
 
     int getV1(){

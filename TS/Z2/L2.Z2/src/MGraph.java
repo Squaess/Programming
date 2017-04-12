@@ -22,70 +22,73 @@ class MGraph {
 
     void addVertex(int vertex) {
         graph.addVertex(vertex);
-        if(!(vertices.contains(vertex))) {
+        if (!(vertices.contains(vertex))) {
             vertices.add(vertex);
         }
     }
+
     /*
     capacity is maximum value of bits per second
      */
     void addEdge(int vertex1, int vertex2, int capacity) {
         int v1 = vertex1;
         int v2 = vertex2;
-        if(v2<v1) {
+        if (v2 < v1) {
             int tmp = v1;
             v1 = v2;
             v2 = tmp;
         }
         MEdge edge = new MEdge(v1, v2, capacity);
-        if(edges.contains(edge)) {
+        if (edges.contains(edge)) {
             return;
         }
         edges.add(edge);
-        graph.addEdge(v1,v2);
+        graph.addEdge(v1, v2);
     }
 
-    public String toString(){
+    public String toString() {
         return graph.toString();
     }
 
-    void sendPacket(int begining, int destination, int numberOfpackets) {
-        if(numberOfpackets==0) return;
-        Random r = new Random();
-        int sizeOfPACKET = r.nextInt(1500);
-        packets.add(numberOfpackets);
-        int v1 = begining, v2=destination;
+    boolean sendPacket(int begining, int destination, int numberOfpackets) {
+//        if(numberOfpackets==0) return;
+
+        int v1 = begining, v2 = destination;
 //        System.out.println("Wysylam "+numberOfpackets+" pakietow z "+ v1+" do "+v2);
-        if(v2<v1) {
+        if (v2 < v1) {
             int tmp = v1;
             v1 = v2;
             v2 = tmp;
         }
-        if(v2==v1) {
-            return;
-        }
+//        if(v2==v1) {
+//            return;
+//        }
         int amount = numberOfpackets * SIZEOFPACKET;
         List path = DijkstraShortestPath.findPathBetween(graph, v1, v2);
 //        System.out.print("Sciezka  ");
-        for (Object i: path) {
+        for (Object i : path) {
             int vertice1 = Character.getNumericValue(i.toString().charAt(1));
-            if(Character.getNumericValue(i.toString().charAt(2))>=0 && Character.getNumericValue(i.toString().charAt(2))<=9) {
-                vertice1 = vertice1 *10 + Character.getNumericValue(i.toString().charAt(1));
+            if (Character.getNumericValue(i.toString().charAt(2)) >= 0 && Character.getNumericValue(i.toString().charAt(2)) <= 9) {
+                vertice1 = vertice1 * 10 + Character.getNumericValue(i.toString().charAt(1));
             }
             int vertice2 = Character.getNumericValue(i.toString().charAt(5));
-            if(Character.getNumericValue(i.toString().charAt(6))>=0 && Character.getNumericValue(i.toString().charAt(6))<=9) {
-                vertice2 = vertice2 *10 + Character.getNumericValue(i.toString().charAt(6));
+            if (Character.getNumericValue(i.toString().charAt(6)) >= 0 && Character.getNumericValue(i.toString().charAt(6)) <= 9) {
+                vertice2 = vertice2 * 10 + Character.getNumericValue(i.toString().charAt(6));
             }
             MEdge e = null;
 //            System.out.print(vertice1+" - "+vertice2+ " | ");
-            for(MEdge edge : edges) {
-                if(edge.getV1() == vertice1 && edge.getV2() == vertice2) {
+            for (MEdge edge : edges) {
+                if (edge.getV1() == vertice1 && edge.getV2() == vertice2) {
                     e = edge;
                 }
             }
             e.setNumberOfPackets(numberOfpackets);
-            e.setFlow(amount);
+            if (!e.setFlow(amount)) {
+                return false;
+            }
         }
+        packets.add(numberOfpackets);
+        return true;
 //        System.out.print("\n");
     }
 

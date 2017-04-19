@@ -1,24 +1,29 @@
 V "GNAT Lib v6"
 M P W=b
-A -mtune=generic
-A -march=x86-64
 P ZX
 
 RN
-RV NO_IO
+RV NO_FLOATING_POINT
+RV SPARK_05
 
-U hello%b		hello.adb		902ab541 NE OO SU
+U hello%b		hello.adb		d0875368 NE OO SU
 W ada%s			ada.ads			ada.ali
-W ada.text_io%s		a-textio.adb		a-textio.ali
+W ada.float_text_io%s	a-flteio.ads		a-flteio.ali
+W gnat%s		gnat.ads		gnat.ali
+W gnat.io%s		g-io.adb		g-io.ali
 
 D ada.ads		20170308151943 3ffc8e18 ada%s
 D a-except.ads		20170308151938 291912d5 ada.exceptions%s
+D a-flteio.ads		20170308151938 e18a47a0 ada.float_text_io%s
 D a-ioexce.ads		20170308151938 e4a01f64 ada.io_exceptions%s
 D a-stream.ads		20170308151938 119b8fb3 ada.streams%s
 D a-tags.ads		20170308151938 01f5e3ef ada.tags%s
 D a-textio.ads		20170308151938 386df5d4 ada.text_io%s
+D a-tiflio.ads		20170308151938 56fbda09 ada.text_io.float_io%s
 D a-unccon.ads		20170308151943 f9eb8f06 ada.unchecked_conversion%s
-D hello.adb		20170315152032 a8474095 hello%b
+D gnat.ads		20170308151938 fd2ad2f1 gnat%s
+D g-io.ads		20170308151938 9f0d3ab2 gnat.io%s
+D hello.adb		20170415184022 ae002e7a hello%b
 D interfac.ads		20170308151943 4be8ce1b interfaces%s
 D i-cstrea.ads		20170308151938 e53d8b8e interfaces.c_streams%s
 D system.ads		20170308151943 6326c08a system%s
@@ -34,10 +39,24 @@ D s-traent.ads		20170308151938 005bf670 system.traceback_entries%s
 D s-unstyp.ads		20170308151943 9d58a4c0 system.unsigned_types%s
 D s-wchcon.ads		20170308151938 1b7d22d2 system.wch_con%s
 X 1 ada.ads
-16K9*Ada 19e8 8|1r6 5r9
-X 6 a-textio.ads
-49K13*Text_IO 471e16 8|1w10 5r13
-263U14*Put_Line 8|5s21
-X 8 hello.adb
-3U11*Hello 3b11 6l5 6t10
+16K9*Ada 19e8 12|2r6 28r5 31r5 34r5
+X 3 a-flteio.ads
+20K13*Float_Text_IO[8|46] 12|2w10 28r9 31r9 34r9
+X 8 a-tiflio.ads
+57U14*Get 12|31s23[3|20]
+68U14*Put 12|28s23[3|20] 34s23[3|20]
+X 10 gnat.ads
+34K9*GNAT 37e9 12|1r6 3r5
+X 11 g-io.ads
+41K14*IO 91e12 12|1w11 3r10
+53U14*Get 12|11s5 13s5
+59U14*Put 12|16s5 21s5 26s5
+68U14*Put 12|10s5 12s5 15s5 20s5 25s5 30s5 33s5
+77U14*New_Line 12|17s5 22s5 27s5 29s5 32s5 35s5
+X 12 hello.adb
+5U11*Hello 5b11 36l5 36t10
+6i5 Mike{integer} 11m9 14r21 19r19 24r20
+6i11 Alice{integer} 13m9 14r30 19r26
+7i5 John_Smith{integer} 14m5 16r9 19m5 21r9
+8f5 F{float} 24m5 24r10 26r17 28r27 31m27 34r27
 

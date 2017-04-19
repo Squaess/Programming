@@ -1,0 +1,107 @@
+V "GNAT Lib v6"
+M P W=b
+P SS ZX
+
+RN
+RV NO_DELAY
+RV NO_FIXED_POINT
+RV NO_FLOATING_POINT
+RV NO_IO
+RV NO_IMPLICIT_DYNAMIC_CODE
+RV NO_RELATIVE_DELAY
+RV NO_SECONDARY_STACK
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_TASK_HIERARCHY
+RV NO_TASKING
+RV NO_DEFAULT_INITIALIZATION
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV SPARK_05
+RV MAX_TASKS=1+
+
+U tasks%b		tasks.adb		ee712033 NE OO SU
+W ada%s			ada.ads			ada.ali
+W ada.calendar.delays%s	a-caldel.adb		a-caldel.ali
+W ada.numerics%s	a-numeri.ads		a-numeri.ali
+W ada.numerics.float_random%s  a-nuflra.adb	a-nuflra.ali
+W ada.real_time%s	a-reatim.adb		a-reatim.ali
+W ada.tags%s		a-tags.adb		a-tags.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W random_seeds%s	random_seeds.adb	random_seeds.ali
+W system%s		system.ads		system.ali
+W system.parameters%s	s-parame.adb		s-parame.ali
+W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
+W system.task_info%s	s-tasinf.adb		s-tasinf.ali
+W system.tasking%s	s-taskin.adb		s-taskin.ali
+W system.tasking.stages%s  s-tassta.adb		s-tassta.ali
+
+D ada.ads		20170308151943 3ffc8e18 ada%s
+D a-calend.ads		20170308151943 d986d312 ada.calendar%s
+D a-caldel.ads		20170308151938 9f20b83d ada.calendar.delays%s
+D a-except.ads		20170308151938 291912d5 ada.exceptions%s
+D a-ioexce.ads		20170308151938 e4a01f64 ada.io_exceptions%s
+D a-numeri.ads		20170308151938 bb51c45a ada.numerics%s
+D a-nuflra.ads		20170308151943 49c50e0b ada.numerics.float_random%s
+D a-reatim.ads		20170308151943 428ef5f7 ada.real_time%s
+D a-stream.ads		20170308151938 119b8fb3 ada.streams%s
+D a-tags.ads		20170308151938 01f5e3ef ada.tags%s
+D a-textio.ads		20170308151938 386df5d4 ada.text_io%s
+D a-unccon.ads		20170308151943 f9eb8f06 ada.unchecked_conversion%s
+D interfac.ads		20170308151943 4be8ce1b interfaces%s
+D i-c.ads		20170308151938 5421119b interfaces.c%s
+D i-cstrea.ads		20170308151938 e53d8b8e interfaces.c_streams%s
+D random_seeds.ads	20170414212752 1abf73f6 random_seeds%s
+D system.ads		20170308151943 6326c08a system%s
+D s-atacco.ads		20170308151938 4c36d12f system.address_to_access_conversions%s
+D s-crtl.ads		20170308151938 0ebbdb71 system.crtl%s
+D s-exctab.ads		20170308151938 54135002 system.exception_table%s
+D s-ficobl.ads		20170308151938 078245e4 system.file_control_block%s
+D s-linux.ads		20170308151938 2fda6ad1 system.linux%s
+D s-multip.ads		20170308151938 38ac9f73 system.multiprocessors%s
+D s-oscons.ads		20170308155128 4bd50652 system.os_constants%s
+D s-osinte.ads		20170308151943 64f6e3c7 system.os_interface%s
+D s-parame.ads		20170308151938 7e2a0d7f system.parameters%s
+D s-rannum.ads		20170308151938 99ade2f2 system.random_numbers%s
+D s-secsta.ads		20170308151943 86a2856d system.secondary_stack%s
+D s-soflin.ads		20170308151938 14e1eb6c system.soft_links%s
+D s-stache.ads		20170308151938 a37c21ec system.stack_checking%s
+D s-stausa.ads		20170308151938 017a0a05 system.stack_usage%s
+D s-stalib.ads		20170308151938 09bd3940 system.standard_library%s
+D s-stoele.ads		20170308151938 2dc34a04 system.storage_elements%s
+D s-tasinf.ads		20170308151938 2b3f8252 system.task_info%s
+D s-taspri.ads		20170308151938 e3ab4429 system.task_primitives%s
+D s-taprop.ads		20170308151938 1dd2e1b6 system.task_primitives.operations%s
+D s-taskin.ads		20170308151943 0766baa7 system.tasking%s
+D s-tassta.ads		20170308151943 70812003 system.tasking.stages%s
+D s-traent.ads		20170308151938 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20170308151943 9d58a4c0 system.unsigned_types%s
+D s-wchcon.ads		20170308151938 1b7d22d2 system.wch_con%s
+D tasks.adb		20170414213137 8566a81a tasks%b
+X 1 ada.ads
+16K9*Ada 19e8 42|1r6 1r23 2r6 2r37
+X 6 a-numeri.ads
+16K13*Numerics 32e17 42|2r10 2r41
+X 7 a-nuflra.ads
+41K22*Float_Random 72e30 42|2w19 2r50
+45R9*Generator<27|63R9> 42|11r13 22r13
+47F12*Uniformly_Distributed{float}
+49V13*Random{47F12}<27|71p13> 42|15s36 26s36
+52U14*Reset<27|106p14> 42|13s9 24s7
+X 11 a-textio.ads
+49K13*Text_IO 471e16 42|1w10 1r27
+263U14*Put_Line 42|16s13 27s13
+X 16 random_seeds.ads
+3K9*Random_Seeds 7e17 42|3w6 3r24
+5A9*Seed_Array_Type(integer)<integer> 42|7r13
+6V13*Make_Seeds{5A9} 42|7s38
+X 31 s-stausa.ads
+203U14*Initialize 204i<c,__gnat_stack_usage_initialize>22
+268U14*Output_Results 272i<c,__gnat_stack_usage_output_results>22
+X 42 tasks.adb
+5U11*Tasks 5b11 33l5 33t10
+7a5 Seeds{16|5A9} 13r18 24r16
+9t10 SimpleTask1 10b15 18l9 18t20
+11r9 G{7|45R9} 13r15 15r43
+20t10 SimpleTask2 21b16 29l8 29t19
+22r9 G{7|45R9} 24r13 26r43
+

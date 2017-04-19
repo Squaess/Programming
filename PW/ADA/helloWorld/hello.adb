@@ -1,6 +1,12 @@
-with Ada.Text_IO;
+--User dafines types and sub-types
+with Gant.Io;
+use Gnat.Io;
 
 procedure Hello is
+    I : Integer;
+
+    --Creating a sub-type eqivalent to Integer
+    subtype Also_Int is Integer;
+    Ai : Also_Int;
 begin
-	Ada.Text_IO.Put_Line("Hello World!");
 end Hello;

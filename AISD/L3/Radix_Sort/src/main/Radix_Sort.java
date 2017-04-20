@@ -33,6 +33,17 @@ public class Radix_Sort {
         return ret;
     }
 
+    private static int[] generateDescArray(int size) {
+        if(size == 0) return new int[0];
+        int[] ret = new int[size];
+        Random r = new Random();
+        ret[0] = r.nextInt(10000)+1000000;
+        for(int i = 1; i < size; i++) {
+            ret[i] =  ret[i-1] - 2;
+        }
+        return ret;
+    }
+
     private static void printArray(int[] array) {
         for(int i : array) {
             System.out.print(i+" ");
@@ -96,7 +107,7 @@ public class Radix_Sort {
             long time = 0;
             int swaps = 0;
             for(int j = 0; j < AVG_TEST; j++) {
-                int[] array = generateRandomArray(i);
+                int[] array = generateDescArray(i);
                 numberOfSwap = 0;
                 long startTime = System.nanoTime();
                 radix_Sort(array);
@@ -113,7 +124,7 @@ public class Radix_Sort {
             swaps = 0;
             for(int j = 0; j < AVG_TEST; j++) {
 
-                int[] array = generateRandomArray(i);
+                int[] array = generateDescArray(i);
                 numberOfSwap = 0;
                 long startTime = System.nanoTime();
                 betterRadix(array, base);

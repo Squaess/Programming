@@ -28,6 +28,7 @@ type pojazd struct {
 // jesli jest startP to pojazd znajduje sie na torze postojowym dla danej stacji
 
 func startP(poj *pojazd) {
+	
 	trasa := poj.trasa
 	dlugosc := len(trasa)
 	var peron *tor_postojowy
@@ -43,11 +44,11 @@ func startP(poj *pojazd) {
 		}
 	}
 	fmt.Println(poj.id,"Jestem na posotowym ",peron)
-	idStacji,_ := strconv.Atoi(peron.stc.nazwa)
+//	idStacji,_ := strconv.Atoi(peron.stc.nazwa)
 	for {
-		stacje[idStacji].czyWolna = false
+		peron.stc.czyWolna = false
 		time.Sleep(time.Second * 1)
-		stacje[idStacji] = true;
+		peron.stc.czyWolna = true;
 	}
 
 		
@@ -162,16 +163,18 @@ func main() {
 	check(err)
 	data := string(dat)
 	arr := strings.Split(data, "\n")
-	more_data := strings.Split(arr[0], " ")
+	more_data := strings.Split(arr[0]," ")
+	fmt.Println(arr[1])
 
 	ilosc_stacji, err := strconv.Atoi(more_data[0])
 	ilosc_przejazdowych, err := strconv.Atoi(arr[1])
 	ilosc_postojowych, err := strconv.Atoi(arr[2])
 	ilosc_pojazdow, err := strconv.Atoi(arr[3])
 
-//	fmt.Println("Ilosc torow przejazdowych", ilosc_przejazdowych)
-//	fmt.Println("Ilosc torow postojowych", ilosc_postojowych)
-//	fmt.Println("Ilosc pojazdow",ilosc_pojazdow)
+	fmt.Println("Ilosc stacji", ilosc_stacji)
+	fmt.Println("Ilosc torow przejazdowych", ilosc_przejazdowych)
+	fmt.Println("Ilosc torow postojowych", ilosc_postojowych)
+	fmt.Println("Ilosc pojazdow",ilosc_pojazdow)
 
 	stacje = make([]stacja, ilosc_stacji)
 	for n := 0; n < ilosc_stacji; n++ {

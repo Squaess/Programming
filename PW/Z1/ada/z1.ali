@@ -12,16 +12,18 @@ RV NO_STANDARD_STORAGE_POOLS
 RV NO_DEFAULT_INITIALIZATION
 RV SPARK_05
 
-U z1%b			z1.adb			dd73804f NE OO SU IL
+U z1%b			z1.adb			71d878cb NE OO SU IL
 W ada%s			ada.ads			ada.ali
 W ada.exceptions%s	a-except.adb		a-except.ali
 W ada.strings%s		a-string.ads		a-string.ali
 W ada.strings.unbounded%s  a-strunb.adb		a-strunb.ali
 W ada.tags%s		a-tags.adb		a-tags.ali
 W ada.text_io%s		a-textio.adb		a-textio.ali
+W system.img_int%s	s-imgint.adb		s-imgint.ali
 W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
 W system.soft_links%s	s-soflin.adb		s-soflin.ali
 W system.standard_library%s  s-stalib.adb	s-stalib.ali
+W system.val_int%s	s-valint.adb		s-valint.ali
 
 D ada.ads		20170308151943 3ffc8e18 ada%s
 D a-charac.ads		20170308151938 2d3ec45b ada.characters%s
@@ -45,6 +47,7 @@ D s-exctab.ads		20170308151938 54135002 system.exception_table%s
 D s-ficobl.ads		20170308151938 078245e4 system.file_control_block%s
 D s-finmas.ads		20170308151938 7811a767 system.finalization_masters%s
 D s-finroo.ads		20170308151938 4ff27390 system.finalization_root%s
+D s-imgint.ads		20170308151938 02dbe0c2 system.img_int%s
 D s-memory.ads		20170308151943 597d6634 system.memory%s
 D s-parame.ads		20170308151938 7e2a0d7f system.parameters%s
 D s-secsta.ads		20170308151943 86a2856d system.secondary_stack%s
@@ -58,40 +61,57 @@ D s-stposu.ads		20170308151938 97a6219c system.storage_pools.subpools%s
 D s-stratt.ads		20170308151938 aedef97e system.stream_attributes%s
 D s-traent.ads		20170308151938 005bf670 system.traceback_entries%s
 D s-unstyp.ads		20170308151943 9d58a4c0 system.unsigned_types%s
+D s-valint.ads		20170308151938 48a52a3f system.val_int%s
 D s-wchcon.ads		20170308151938 1b7d22d2 system.wch_con%s
-D z1.adb		20170422171950 da8fa15e z1%b
+D z1.adb		20170424164244 762459da z1%b
 X 1 ada.ads
-16K9*Ada 19e8 37|1r6 1r23 2r6 5r13 13r18 14r13
+16K9*Ada 19e8 39|1r6 1r23 2r6 2r33 39r18
 X 8 a-string.ads
-16K13*Strings 35e16 37|2r10 5r17 13r22 14r17
+16K13*Strings 35e16 39|2r10 2r37 39r22
 X 10 a-strunb.ads
-76K21*Unbounded 489e26 37|2w18 5r25 13r30 14r25
-79R9*Unbounded_String<5|43R9> 473e14 37|5r35
-94V13*To_Unbounded_String{79R9} 37|13s40
-100V13*To_String{string} 37|14s35
+76K21*Unbounded 489e26 39|2w18 2r45 39r30
+79R9*Unbounded_String<5|43R9> 473e14 39|21r13
+82r4*Null_Unbounded_String{79R9} 39|21r33
+94V13*To_Unbounded_String{79R9} 39|39s40
+100V13*To_String{string} 39|31s35
+111U14*Append 39|30s5
+112r7 Source{79R9} 39|30r12
+113a7 New_Item{string} 39|30r29
 X 12 a-textio.ads
-49K13*Text_IO 471e16 37|1w10 1r27
-52P9*File_Type 37|4r12
-53n23*In_File{53E9} 37|9r18
-92U14*Open 37|8s5
-93p7 File{52P9} 37|8r10
-94e7 Mode{53E9} 37|9r10
-95a7 Name{string} 37|10r10
-98U14*Close 37|18s5
-166U14*New_Line 37|15s9
-183V13*End_Of_File{boolean} 37|12s19
-242U14*Put 37|14s9
-253V13*Get_Line{string} 37|13s60
+49K13*Text_IO 471e16 39|1w10 1r27
+52P9*File_Type 39|20r12
+53n23*In_File{53E9} 39|27r18
+92U14*Open 39|26s5
+93p7 File{52P9} 39|26r10
+94e7 Mode{53E9} 39|27r10
+95a7 Name{string} 39|28r10
+98U14*Close 39|44s5
+183V13*End_Of_File{boolean} 39|38s19
+242U14*Put 39|34s9
+244U14*Get_Line 39|29s5
+253V13*Get_Line{string} 39|39s60
 X 16 system.ads
 67M9*Address
-X 23 s-memory.ads
+X 24 s-memory.ads
 53V13*Alloc{16|67M9} 103i<c,__gnat_malloc>22
 68U14*Free 104i<c,__gnat_free>22
 76V13*Realloc{16|67M9} 105i<c,__gnat_realloc>22
-X 29 s-stalib.adb
+X 30 s-stalib.adb
 93U14 Break_Start 94i<c,__gnat_break_start>22
-X 37 z1.adb
-3U11*z1 3b11 19l5 19t7
-4p5 File{12|52P9} 8m18 8r18 12r31 13r69 18m11 18r11
-5r5 Value{10|79R9} 13m9 14r45
+X 39 z1.adb
+5U11*z1 5b11 46l5 46t7
+7R10 Stacja 11e15 14r47
+8i9 Id_Stacji{integer}
+9i9 Czas_Zwrotnicy{integer}
+10b9 Czy_Wolna{boolean}
+13I13 positive{integer} 14r26
+14A10 Stacje(7R10)<integer> 24r20
+16N5 Buffer_Size 18r24
+17i5 Last{natural} 29m25
+18a5 Item{string} 29m19 30r41
+20p5 File{12|52P9} 26m18 26r18 29r14 38r31 39r69 44m11 44r11
+21r5 Value{10|79R9} 30m22 30r22 31r45 39m9
+23i5 Ilosc_Stacji{integer} 31m5
+24a5 Array_Stacje{14A10} 33r14
+33i9 I{integer} 34r27
 

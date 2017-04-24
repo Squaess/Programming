@@ -8,10 +8,48 @@ import (
     "io/ioutil"
 	"time"
 )
+
 var mutex = &sync.Mutex{}
+
 var stacje ([]stacja)
 var tory_przejazdowe ([]tor_przejazdowy)
 var tory_postojowe ([]tor_postojowy)
+var pojazdy ([] pojazd)
+
+func gadatliwy(){
+	fmt.Println("Gadatliwy")
+	
+	go startP(&pojazdy[0])
+	go startP(&pojazdy[1])
+	go startP(&pojazdy[2])
+	go startP(&pojazdy[3])
+}
+
+func spokojny(){
+	fmt.Println("Spokojny")
+	go startS(&pojazdy[0])
+	go startS(&pojazdy[1])
+	go startS(&pojazdy[2])
+	go startS(&pojazdy[3])
+	for {
+		fmt.Println("1. Informacje o peronach")
+		fmt.Println("2. Informacje o zwrotnicach")
+		fmt.Println("3. Informacje o torach")
+		var input string
+		fmt.Scanln(&input)
+		fmt.Println(input)
+		switch input {
+			case "1":
+				monitorPostoj()			
+			case "2":
+				monitorStacje()
+			case "3":
+				monitorPrzejazd()
+		}
+		if(input == "quit"){
+		break}
+	}
+}
 
 func check(e error) {
     if e != nil {
@@ -26,43 +64,41 @@ type pojazd struct {
 	trasa ([]stacja)
 }
 // jesli jest startP to pojazd znajduje sie na torze postojowym dla danej stacji
-
-func startP(poj *pojazd) {
+func startS(poj *pojazd) {
 	
 	trasa := poj.trasa
 	dlugosc := len(trasa)
+	//umieszczamy pojazd na peronie
 	var peron *tor_postojowy
 	for in,n := range tory_postojowe {
 		if n.stc.nazwa == trasa[0].nazwa {
+			mutex.Lock()
 			if(n.czyWolny) {
-				mutex.Lock()
+				
 				peron = &tory_postojowe[in]
 				peron.czyWolny = false
 				mutex.Unlock()
 				break
 			}
+			mutex.Unlock()
 		}
 	}
-	fmt.Println(poj.id,"Jestem na posotowym ",peron)
-//	idStacji,_ := strconv.Atoi(peron.stc.nazwa)
-	for {
-		peron.stc.czyWolna = false
-		time.Sleep(time.Second * 1)
-		peron.stc.czyWolna = true;
-	}
+	
+	// szukamy stacji aby moc skozystac ze zwrotnicy
+
 
 		
 	i := 0
 	for {
-
+//		fmt.Println(poj.id,"Jestem na postojowym ",peron)
+		// torem bedzie tor ktorego chcemy uzyc aby dostac sie na nastepna stacje ktora jest na naszej trasie
 		var tor *tor_przejazdowy
 		var predkosc int = poj.V_max
-		//trzeba bedzie jeszcze zrobic czekanie na zwrotnice i jakies te tory postojowe
+
 		//szukamy toru przejazdowego dla naszego pojazdu
 		for d, n := range tory_przejazdowe {
 			if n.poczatek == trasa[i%dlugosc] && n.koniec == trasa[(i+1)%dlugosc] {
 				tor = &tory_przejazdowe[d]
-//				fmt.Println(poj.id, tory_przejazdowe[d])
 				break
 			}
 		}
@@ -70,50 +106,243 @@ func startP(poj *pojazd) {
 		if predkosc > tor.V_max {
 			predkosc = tor.V_max
 		}
-//		fmt.Println(poj.id, "Sprawdzam czy zwrotnica wolna",trasa[i])
+		//najpierw musimu sprawdzic czy tor jest wolny aby nie blokowac zwrotnicy 
 		for {
-			if(!(stacje[i].czyWolna)) {
-				continue
-			}
 			mutex.Lock()
-			stacje[i].czyWolna = false
-			mutex.Unlock()
-			break;
-		}
+			if tor.czyWolny {
+				idS,_ := strconv.Atoi(tor.poczatek.nazwa)
+				//odejmujemy 1 poniewaz stacja o nazwie 1 znajduje sie pod stacje[0]
+				idS = idS -1
+//				fmt.Println(poj.id,"tor wolny sprawdzam zwrotnice",tor.czyWolny, stacje[idS].czyWolna)
+				//rezerwujemy sobie tor
+				tor.czyWolny = false
+				mutex.Unlock()
 
-//		fmt.Println(poj.id, "Wjezdzam na zwrotnice: ",trasa[i])
+				//czekamy na zwrotnice
+				for {
+					mutex.Lock()	
+					if stacje[idS].czyWolna==true {
+//						fmt.Println(poj.id,"Tor wolny i zwrotnica tez... jade", tor.czyWolny, stacje[idS].czyWolna)	
+						stacje[idS].czyWolna = false
+						peron.czyWolny = true;
+						mutex.Unlock()
+						break
+					}
+					mutex.Unlock()
+				}
+				break
+			}
+			mutex.Unlock()
+		}
+		//czekamy az obroci sie zwrotnica
 		time.Sleep(time.Second * time.Duration(trasa[i].czasZwrot))
-//		fmt.Println(poj.id, "Skonczylem na zwrotnicy",trasa[i])
+		idS,_ := strconv.Atoi(trasa[i].nazwa)
+		idS -= 1
+//		fmt.Println(poj.id, "Skonczylem na zwrotnicy zwalniam ja",stacje[idS])
+		mutex.Lock()
+		stacje[idS].czyWolna = true
+		mutex.Unlock()
+//		fmt.Println(poj.id, "Wjezdzam na tor",tor)
 
 //		fmt.Println("Sprawdzam czy tor wolny ")
 
-		for {
-			if tor.czyWolny {
-				mutex.Lock()
-				stacje[i].czyWolna = true
-				tor.czyWolny = false
-				mutex.Unlock()
-				break
-			}
-		}
+//		for {
+//			if tor.czyWolny {
+//				mutex.Lock()
+//				stacje[i].czyWolna = true
+//				tor.czyWolny = false
+//				mutex.Unlock()
+//				break
+//			}
+//		}
 		czas := tor.dlugosc / predkosc
 		interval := time.Duration(czas)
 		
 //		fmt.Println(poj.id , "Wyjezdzam z ", trasa[i].nazwa)
 //		fmt.Println(poj.id, "I jade ... do",trasa[(i+1)%dlugosc])
 		time.Sleep(time.Second * interval)
-		
+		idS,_  = strconv.Atoi(trasa[(i+1)%dlugosc].nazwa)
+		idS = idS-1
+//		fmt.Println(poj.id, "Jestem pod stacja czekam na zwrotnice", stacje[idS])
+
 		for {
-			if(stacje[(i+1)%dlugosc].czyWolna) {
-				continue
+
+			if(stacje[idS].czyWolna) {
+				mutex.Lock()
+//				fmt.Println(poj.id,"Zwrotnica wolna",stacje[idS].czyWolna)
+				stacje[idS].czyWolna = false
+				tor.czyWolny = true
+				mutex.Unlock()
+				break;
 			}
-			mutex.Lock()
-			stacje[i].czyWolna = false
-			tor.czyWolny = true
-			mutex.Unlock()
-			break;
 		}
 
+		zwrot := stacje[idS].czasZwrot
+		time.Sleep(time.Second * time.Duration(zwrot))
+
+		//sprawdzamy czy jest wolny peron
+		for {
+			for ind, en := range tory_postojowe {
+				if en.stc.nazwa == stacje[idS].nazwa {
+					if(en.czyWolny) {
+						mutex.Lock()
+						peron = &tory_postojowe[ind]
+//						fmt.Println(poj.id, "Zjezdzam ze zwrotnicy na peron", stacje[idS], peron)
+						peron.czyWolny = false
+						stacje[idS].czyWolna = true
+						mutex.Unlock()
+						break
+					}
+				}
+			}
+			if(peron.stc.nazwa == stacje[idS].nazwa) {
+				break
+			}
+		}
+
+		time.Sleep(time.Second * time.Duration(peron.min_czas_post))
+
+		i = (i + 1)%dlugosc
+	}
+}
+
+func startP(poj *pojazd) {
+	
+	trasa := poj.trasa
+	dlugosc := len(trasa)
+	//umieszczamy pojazd na peronie
+	var peron *tor_postojowy
+	for in,n := range tory_postojowe {
+		if n.stc.nazwa == trasa[0].nazwa {
+			mutex.Lock()
+			if(n.czyWolny) {
+				
+				peron = &tory_postojowe[in]
+				peron.czyWolny = false
+				mutex.Unlock()
+				break
+			}
+			mutex.Unlock()
+		}
+	}
+	
+	// szukamy stacji aby moc skozystac ze zwrotnicy
+
+
+		
+	i := 0
+	for {
+		fmt.Println(poj.id,"Jestem na postojowym ",peron)
+		// torem bedzie tor ktorego chcemy uzyc aby dostac sie na nastepna stacje ktora jest na naszej trasie
+		var tor *tor_przejazdowy
+		var predkosc int = poj.V_max
+
+		//szukamy toru przejazdowego dla naszego pojazdu
+		for d, n := range tory_przejazdowe {
+			if n.poczatek == trasa[i%dlugosc] && n.koniec == trasa[(i+1)%dlugosc] {
+				tor = &tory_przejazdowe[d]
+				break
+			}
+		}
+		//sprawdzamy ograniczenie predkosci dla danego toru
+		if predkosc > tor.V_max {
+			predkosc = tor.V_max
+		}
+		//najpierw musimu sprawdzic czy tor jest wolny aby nie blokowac zwrotnicy 
+		for {
+			mutex.Lock()
+			if tor.czyWolny {
+				idS,_ := strconv.Atoi(tor.poczatek.nazwa)
+				//odejmujemy 1 poniewaz stacja o nazwie 1 znajduje sie pod stacje[0]
+				idS = idS -1
+				fmt.Println(poj.id,"tor wolny sprawdzam zwrotnice",tor.czyWolny, stacje[idS].czyWolna)
+				//rezerwujemy sobie tor
+				tor.czyWolny = false
+				mutex.Unlock()
+
+				//czekamy na zwrotnice
+				for {
+					mutex.Lock()	
+					if stacje[idS].czyWolna==true {
+						fmt.Println(poj.id,"Tor wolny i zwrotnica tez... jade", tor.czyWolny, stacje[idS].czyWolna)	
+						stacje[idS].czyWolna = false
+						peron.czyWolny = true;
+						mutex.Unlock()
+						break
+					}
+					mutex.Unlock()
+				}
+				break
+			}
+			mutex.Unlock()
+		}
+		//czekamy az obroci sie zwrotnica
+		time.Sleep(time.Second * time.Duration(trasa[i].czasZwrot))
+		idS,_ := strconv.Atoi(trasa[i].nazwa)
+		idS -= 1
+		fmt.Println(poj.id, "Skonczylem na zwrotnicy zwalniam ja",stacje[idS])
+		mutex.Lock()
+		stacje[idS].czyWolna = true
+		mutex.Unlock()
+		fmt.Println(poj.id, "Wjezdzam na tor",tor)
+
+//		fmt.Println("Sprawdzam czy tor wolny ")
+
+//		for {
+//			if tor.czyWolny {
+//				mutex.Lock()
+//				stacje[i].czyWolna = true
+//				tor.czyWolny = false
+//				mutex.Unlock()
+//				break
+//			}
+//		}
+		czas := tor.dlugosc / predkosc
+		interval := time.Duration(czas)
+		
+//		fmt.Println(poj.id , "Wyjezdzam z ", trasa[i].nazwa)
+//		fmt.Println(poj.id, "I jade ... do",trasa[(i+1)%dlugosc])
+		time.Sleep(time.Second * interval)
+		idS,_  = strconv.Atoi(trasa[(i+1)%dlugosc].nazwa)
+		idS = idS-1
+		fmt.Println(poj.id, "Jestem pod stacja czekam na zwrotnice", stacje[idS])
+
+		for {
+
+			if(stacje[idS].czyWolna) {
+				mutex.Lock()
+				fmt.Println(poj.id,"Zwrotnica wolna",stacje[idS].czyWolna)
+				stacje[idS].czyWolna = false
+				tor.czyWolny = true
+				mutex.Unlock()
+				break;
+			}
+		}
+
+		zwrot := stacje[idS].czasZwrot
+		time.Sleep(time.Second * time.Duration(zwrot))
+
+		//sprawdzamy czy jest wolny peron
+		for {
+			for ind, en := range tory_postojowe {
+				if en.stc.nazwa == stacje[idS].nazwa {
+					if(en.czyWolny) {
+						mutex.Lock()
+						peron = &tory_postojowe[ind]
+						fmt.Println(poj.id, "Zjezdzam ze zwrotnicy na peron", stacje[idS], peron)
+						peron.czyWolny = false
+						stacje[idS].czyWolna = true
+						mutex.Unlock()
+						break
+					}
+				}
+			}
+			if(peron.stc.nazwa == stacje[idS].nazwa) {
+				break
+			}
+		}
+
+		time.Sleep(time.Second * time.Duration(peron.min_czas_post))
 
 		i = (i + 1)%dlugosc
 	}
@@ -139,22 +368,23 @@ type tor_przejazdowy struct {
 	V_max int
 }
 
-func monitorPostoj(){
-	for {
-		for _,n := range tory_postojowe {
-			fmt.Println(n)
-		}
-		time.Sleep(time.Second * 1)
+func monitorPrzejazd() {
+	for _, n := range tory_przejazdowe {
+		fmt.Println(n)
 	}
+}
+func monitorPostoj(){
+	for _,n := range tory_postojowe {
+		fmt.Println(n)
+	}
+	time.Sleep(time.Second * 1)
 }
 
 func monitorStacje(){
-	for {
-		for _,n := range stacje {
-			fmt.Println(n)
-		}
-		time.Sleep(time.Second * 1)
+	for _,n := range stacje {
+		fmt.Println(n)
 	}
+	time.Sleep(time.Second * 1)
 }
 
 func main() {
@@ -211,7 +441,7 @@ func main() {
 
 //	fmt.Println("Tory postojowe",tory_postojowe)
 
-	pojazdy := make([]pojazd, ilosc_pojazdow)
+	pojazdy = make([]pojazd, ilosc_pojazdow)
 	it := 0
 	for n := (len(arr)-1-ilosc_pojazdow); n < (len(arr)-1); n++ {
 		special_data := strings.Split(arr[n]," ")
@@ -229,32 +459,32 @@ func main() {
 		it++
 	}
 
-//	fmt.Println("Pojazdy:",pojazdy)
 	
-//	go func(p1 *pojazd) {
-//		for {
-//			p1.il_osob++
-//			fmt.Println("zwiekszam ilosc osob dla ", p1.id,p1.il_osob)
-//			time.Sleep(time.Second*10)
-//		}
-//	}(&pojazdy[0])
-//
-//	go func(poj []pojazd) {
-//		for {
-//			for _,n := range poj {
-//				fmt.Println(n)
-//				time.Sleep(time.Second*2)
-//			}
-//		}
-//	}(pojazdy)
-
-	go startP(&pojazdy[0])
-	go startP(&pojazdy[1])
-//	go startP(&pojazdy[2])
-//	go startP(&pojazdy[3])
-//	go monitorPostoj()
-	go monitorStacje()
+	fmt.Println("1. Tryb gadatliwy")
+	fmt.Println("2. Tryb spokojny")
 	var input string
 	fmt.Scanln(&input)
+	fmt.Println(input)
+	switch input {
+		case "1":
+			go gadatliwy()
+		case "2":
+			spokojny()
+		default:
+			fmt.Println("Error error")
+	}
+
+
+
+
+//	go monitorPostoj()
+//	go monitorStacje()
+	for {
+		fmt.Scanln(&input)
+		if(input == "quit") {
+			break
+		}
+	}
+//	fmt.Scanln(&input)
 	fmt.Println("done")
 }

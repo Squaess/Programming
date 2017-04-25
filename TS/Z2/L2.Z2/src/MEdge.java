@@ -1,5 +1,6 @@
 
 class MEdge {
+
     private int v1;
     private int v2;
     private int capacity;
@@ -18,12 +19,9 @@ class MEdge {
         return this.flow;
     }
 
-    boolean setFlow(int value) {
+    boolean checkOverload(int value) {
         this.flow += value;
-        if(flow >= capacity) {
-            return false;
-        }
-        return true;
+        return flow < capacity;
     }
 
     int getV1(){

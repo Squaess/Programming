@@ -35,6 +35,7 @@ func spokojny(){
 		fmt.Println("1. Informacje o peronach")
 		fmt.Println("2. Informacje o zwrotnicach")
 		fmt.Println("3. Informacje o torach")
+		fmt.Println("4. Informacje o pojazdach")
 		var input string
 		fmt.Scanln(&input)
 		fmt.Println(input)
@@ -45,6 +46,8 @@ func spokojny(){
 				monitorStacje()
 			case "3":
 				monitorPrzejazd()
+			case "4":
+				monitorPojazd()
 		}
 		if(input == "quit"){
 		break}
@@ -62,6 +65,7 @@ type pojazd struct {
 	V_max int
 	il_osob int
 	trasa ([]stacja)
+	aktualny_tor tor_przejazdowy
 }
 // jesli jest startP to pojazd znajduje sie na torze postojowym dla danej stacji
 func startS(poj *pojazd) {
@@ -142,6 +146,7 @@ func startS(poj *pojazd) {
 		mutex.Lock()
 		stacje[idS].czyWolna = true
 		mutex.Unlock()
+		poj.aktualny_tor = *tor
 //		fmt.Println(poj.id, "Wjezdzam na tor",tor)
 
 //		fmt.Println("Sprawdzam czy tor wolny ")
@@ -168,6 +173,7 @@ func startS(poj *pojazd) {
 		for {
 
 			if(stacje[idS].czyWolna) {
+				poj.aktualny_tor = tor_przejazdowy{}
 				mutex.Lock()
 //				fmt.Println(poj.id,"Zwrotnica wolna",stacje[idS].czyWolna)
 				stacje[idS].czyWolna = false
@@ -368,6 +374,11 @@ type tor_przejazdowy struct {
 	V_max int
 }
 
+func monitorPojazd() {
+	for _, n := range pojazdy {
+		fmt.Println(n)
+	}
+}
 func monitorPrzejazd() {
 	for _, n := range tory_przejazdowe {
 		fmt.Println(n)
@@ -455,7 +466,7 @@ func main() {
 			trasa[i] = stacje[numer_stacji - 1]
 			i++
 		}
-		pojazdy[it] = pojazd{it, v, il_osob, trasa}
+		pojazdy[it] = pojazd{it, v, il_osob, trasa, tor_przejazdowy{}}
 		it++
 	}
 

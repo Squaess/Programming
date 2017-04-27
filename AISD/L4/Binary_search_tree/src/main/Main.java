@@ -51,10 +51,10 @@ public class Main {
     }
 
     private static void experiment() {
-        int maximum_size_of_data = 100;
+        int maximum_size_of_data = 1000000;
         int number_of_test_for_search = 100000000;
 
-        for(int j = 0; j < maximum_size_of_data; j++) {
+        for(int j = 0; j < maximum_size_of_data; j+= 100) {
 
             BinaryTree<Integer> bt = new BinaryTree<>();
             long min = Integer.MAX_VALUE;

@@ -1,0 +1,21 @@
+20
+insert 1
+insert 2
+insert 3
+inorder
+insert 10
+insert -1
+insert 15
+insert 4
+min
+max
+find 2
+find 10000
+delete 1
+delete 2
+delete 3
+delete 4
+min
+insert 1000
+max
+inorder

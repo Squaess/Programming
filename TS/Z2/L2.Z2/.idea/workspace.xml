@@ -22,8 +22,8 @@
       <file leaf-file-name="Network.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Network.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2271">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="1960">
+              <caret line="98" column="30" lean-forward="false" selection-start-line="98" selection-start-column="30" selection-end-line="98" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -34,7 +34,7 @@
       <file leaf-file-name="MyGraph.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MyGraph.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1999">
+            <state relative-caret-position="560">
               <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -46,20 +46,10 @@
       <file leaf-file-name="MEdge.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MEdge.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="400">
               <caret line="22" column="27" lean-forward="false" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
               <folding>
                 <marker date="1493171776346" expanded="true" signature="492:499" ph="{...}" />
-                <marker date="1493171776346" expanded="false" signature="516:526" ph=" { " />
-                <marker date="1493171776346" expanded="false" signature="541:547" ph=" }" />
-                <marker date="1493171776346" expanded="false" signature="564:575" ph=" { " />
-                <marker date="1493171776346" expanded="false" signature="590:596" ph=" }" />
-                <marker date="1493171776346" expanded="false" signature="619:630" ph=" { " />
-                <marker date="1493171776346" expanded="false" signature="651:657" ph=" }" />
-                <marker date="1493171776346" expanded="false" signature="687:698" ph=" { " />
-                <marker date="1493171776346" expanded="false" signature="726:732" ph=" }" />
-                <marker date="1493171776346" expanded="false" signature="782:793" ph=" { " />
-                <marker date="1493171776346" expanded="false" signature="833:839" ph=" }" />
               </folding>
             </state>
           </provider>
@@ -115,7 +105,7 @@
     </entry>
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -128,39 +118,7 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="L2.Z2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="L2.Z2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="L2.Z2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="L2.Z2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/jgrapht-1.0.1/lib" />
@@ -401,12 +359,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="27" width="1366" height="741" extended-state="7" />
+    <frame x="0" y="27" width="1366" height="741" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32216907" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -414,13 +371,14 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22767204" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22767204" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20825516" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32216907" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -476,22 +434,102 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/MyGraph.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MEdge.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="22" column="27" lean-forward="false" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
+          <folding>
+            <marker date="1493171776346" expanded="true" signature="492:499" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Network.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MyGraph.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="884">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MEdge.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="22" column="27" lean-forward="false" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
+          <folding>
+            <marker date="1493171776346" expanded="true" signature="492:499" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Network.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MyGraph.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="884">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MEdge.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="22" column="27" lean-forward="false" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
+          <folding>
+            <marker date="1493171776346" expanded="true" signature="492:499" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Network.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/MEdge.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
           <caret line="21" column="27" lean-forward="true" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
           <folding>
             <marker date="1493171776346" expanded="true" signature="492:499" ph="{...}" />
-            <marker date="1493171776346" expanded="false" signature="516:526" ph=" { " />
-            <marker date="1493171776346" expanded="false" signature="541:547" ph=" }" />
-            <marker date="1493171776346" expanded="false" signature="564:575" ph=" { " />
-            <marker date="1493171776346" expanded="false" signature="590:596" ph=" }" />
-            <marker date="1493171776346" expanded="false" signature="619:630" ph=" { " />
-            <marker date="1493171776346" expanded="false" signature="651:657" ph=" }" />
-            <marker date="1493171776346" expanded="false" signature="687:698" ph=" { " />
-            <marker date="1493171776346" expanded="false" signature="726:732" ph=" }" />
-            <marker date="1493171776346" expanded="false" signature="782:793" ph=" { " />
-            <marker date="1493171776346" expanded="false" signature="833:839" ph=" }" />
           </folding>
         </state>
       </provider>
@@ -506,30 +544,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="115" column="16" lean-forward="false" selection-start-line="115" selection-start-column="16" selection-end-line="115" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MGraph.java" />
     <entry file="file://$PROJECT_DIR$/src/MEdge.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
           <folding>
             <marker date="1493171776346" expanded="true" signature="492:499" ph="{...}" />
-            <marker date="1493171776346" expanded="false" signature="516:526" ph=" { " />
-            <marker date="1493171776346" expanded="false" signature="541:547" ph=" }" />
-            <marker date="1493171776346" expanded="false" signature="564:575" ph=" { " />
-            <marker date="1493171776346" expanded="false" signature="590:596" ph=" }" />
-            <marker date="1493171776346" expanded="false" signature="619:630" ph=" { " />
-            <marker date="1493171776346" expanded="false" signature="651:657" ph=" }" />
-            <marker date="1493171776346" expanded="false" signature="687:698" ph=" { " />
-            <marker date="1493171776346" expanded="false" signature="726:732" ph=" }" />
-            <marker date="1493171776346" expanded="false" signature="782:793" ph=" { " />
-            <marker date="1493171776346" expanded="false" signature="833:839" ph=" }" />
           </folding>
         </state>
       </provider>
@@ -544,30 +565,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1840">
-          <caret line="115" column="16" lean-forward="false" selection-start-line="115" selection-start-column="16" selection-end-line="115" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MGraph.java" />
     <entry file="file://$PROJECT_DIR$/src/MEdge.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
           <caret line="22" column="18" lean-forward="false" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
           <folding>
             <marker date="1493171776346" expanded="true" signature="492:499" ph="{...}" />
-            <marker date="1493171776346" expanded="false" signature="516:526" ph=" { " />
-            <marker date="1493171776346" expanded="false" signature="541:547" ph=" }" />
-            <marker date="1493171776346" expanded="false" signature="564:575" ph=" { " />
-            <marker date="1493171776346" expanded="false" signature="590:596" ph=" }" />
-            <marker date="1493171776346" expanded="false" signature="619:630" ph=" { " />
-            <marker date="1493171776346" expanded="false" signature="651:657" ph=" }" />
-            <marker date="1493171776346" expanded="false" signature="687:698" ph=" { " />
-            <marker date="1493171776346" expanded="false" signature="726:732" ph=" }" />
-            <marker date="1493171776346" expanded="false" signature="782:793" ph=" { " />
-            <marker date="1493171776346" expanded="false" signature="833:839" ph=" }" />
           </folding>
         </state>
       </provider>
@@ -582,30 +586,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2990">
-          <caret line="115" column="16" lean-forward="true" selection-start-line="115" selection-start-column="16" selection-end-line="115" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MGraph.java" />
     <entry file="file://$PROJECT_DIR$/src/MEdge.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="364">
           <caret line="22" column="18" lean-forward="false" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
           <folding>
             <marker date="1493171776346" expanded="true" signature="492:499" ph="{...}" />
-            <marker date="1493171776346" expanded="false" signature="516:526" ph=" { " />
-            <marker date="1493171776346" expanded="false" signature="541:547" ph=" }" />
-            <marker date="1493171776346" expanded="false" signature="564:575" ph=" { " />
-            <marker date="1493171776346" expanded="false" signature="590:596" ph=" }" />
-            <marker date="1493171776346" expanded="false" signature="619:630" ph=" { " />
-            <marker date="1493171776346" expanded="false" signature="651:657" ph=" }" />
-            <marker date="1493171776346" expanded="false" signature="687:698" ph=" { " />
-            <marker date="1493171776346" expanded="false" signature="726:732" ph=" }" />
-            <marker date="1493171776346" expanded="false" signature="782:793" ph=" { " />
-            <marker date="1493171776346" expanded="false" signature="833:839" ph=" }" />
           </folding>
         </state>
       </provider>
@@ -620,14 +607,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1380">
-          <caret line="94" column="0" lean-forward="false" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MGraph.java" />
     <entry file="file://$PROJECT_DIR$/src/Network.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -638,14 +618,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1880">
-          <caret line="94" column="0" lean-forward="false" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MGraph.java" />
     <entry file="file://$PROJECT_DIR$/src/Network.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -656,14 +629,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1880">
-          <caret line="94" column="0" lean-forward="true" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MGraph.java" />
     <entry file="file://$PROJECT_DIR$/src/Network.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -674,14 +640,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1500">
-          <caret line="100" column="19" lean-forward="true" selection-start-line="100" selection-start-column="19" selection-end-line="100" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MGraph.java" />
     <entry file="file://$PROJECT_DIR$/src/Network.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -713,23 +672,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2200">
-          <caret line="135" column="171" lean-forward="true" selection-start-line="135" selection-start-column="171" selection-end-line="135" selection-end-column="171" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MGraph.java" />
     <entry file="file://$PROJECT_DIR$/src/mojGraph.java" />
-    <entry file="file://$PROJECT_DIR$/src/MGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="10" column="49" lean-forward="true" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MGraph.java" />
     <entry file="file://$PROJECT_DIR$/src/Network.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
@@ -741,14 +686,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mojGraph.java" />
-    <entry file="file://$PROJECT_DIR$/src/MGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MGraph.java" />
     <entry file="file://$PROJECT_DIR$/src/Network.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="760">
@@ -771,48 +709,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="7" column="113" lean-forward="false" selection-start-line="7" selection-start-column="113" selection-end-line="7" selection-end-column="113" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MGraph.java" />
     <entry file="file://$PROJECT_DIR$/src/MyEdge.java" />
     <entry file="file://$PROJECT_DIR$/src/mojGraph.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/jre/lib/rt.jar!/com/sun/accessibility/internal/resources/accessibility.class" />
-    <entry file="file://$PROJECT_DIR$/src/MGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="149" column="5" lean-forward="true" selection-start-line="140" selection-start-column="4" selection-end-line="149" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MGraph.java" />
     <entry file="file://$PROJECT_DIR$/src/MEdge.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="400">
           <caret line="22" column="27" lean-forward="false" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
           <folding>
             <marker date="1493171776346" expanded="true" signature="492:499" ph="{...}" />
-            <marker date="1493171776346" expanded="false" signature="516:526" ph=" { " />
-            <marker date="1493171776346" expanded="false" signature="541:547" ph=" }" />
-            <marker date="1493171776346" expanded="false" signature="564:575" ph=" { " />
-            <marker date="1493171776346" expanded="false" signature="590:596" ph=" }" />
-            <marker date="1493171776346" expanded="false" signature="619:630" ph=" { " />
-            <marker date="1493171776346" expanded="false" signature="651:657" ph=" }" />
-            <marker date="1493171776346" expanded="false" signature="687:698" ph=" { " />
-            <marker date="1493171776346" expanded="false" signature="726:732" ph=" }" />
-            <marker date="1493171776346" expanded="false" signature="782:793" ph=" { " />
-            <marker date="1493171776346" expanded="false" signature="833:839" ph=" }" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MyGraph.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1999">
+        <state relative-caret-position="560">
           <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -822,8 +736,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Network.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2271">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="1960">
+          <caret line="98" column="30" lean-forward="false" selection-start-line="98" selection-start-column="30" selection-end-line="98" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

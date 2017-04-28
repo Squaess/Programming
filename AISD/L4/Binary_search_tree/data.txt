@@ -1,4 +1,4 @@
-20
+32
 insert 1
 insert 2
 insert 3
@@ -18,4 +18,16 @@ delete 4
 min
 insert 1000
 max
-inorder
+inorder
+delete -1
+delete 15
+delete 1000
+inorder
+delete 10
+inorder
+max
+min
+insert 5
+inorder
+delete -120312
+inorder

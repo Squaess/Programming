@@ -5,6 +5,7 @@ P SS ZX
 RN
 RV NO_EXCEPTION_HANDLERS
 RV NO_EXCEPTIONS
+RV NO_FLOATING_POINT
 RV NO_IO
 RV NO_NESTED_FINALIZATION
 RV NO_SECONDARY_STACK
@@ -12,13 +13,15 @@ RV NO_STANDARD_STORAGE_POOLS
 RV NO_DEFAULT_INITIALIZATION
 RV SPARK_05
 
-U z1%b			z1.adb			71d878cb NE OO SU IL
+U z1%b			z1.adb			4ebffc0c NE OO SU IL
 W ada%s			ada.ads			ada.ali
 W ada.exceptions%s	a-except.adb		a-except.ali
+W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
 W ada.strings%s		a-string.ads		a-string.ali
 W ada.strings.unbounded%s  a-strunb.adb		a-strunb.ali
 W ada.tags%s		a-tags.adb		a-tags.ali
 W ada.text_io%s		a-textio.adb		a-textio.ali
+W conveyance3%s		conveyance3.ads		conveyance3.ali
 W system.img_int%s	s-imgint.adb		s-imgint.ali
 W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
 W system.soft_links%s	s-soflin.adb		s-soflin.ali
@@ -30,6 +33,7 @@ D a-charac.ads		20170308151938 2d3ec45b ada.characters%s
 D a-chlat1.ads		20170308151938 66457d31 ada.characters.latin_1%s
 D a-except.ads		20170308151938 291912d5 ada.exceptions%s
 D a-finali.ads		20170308151938 bf4f806b ada.finalization%s
+D a-inteio.ads		20170308151938 f64b89a4 ada.integer_text_io%s
 D a-ioexce.ads		20170308151938 e4a01f64 ada.io_exceptions%s
 D a-stream.ads		20170308151938 119b8fb3 ada.streams%s
 D a-string.ads		20170308151938 90ac6797 ada.strings%s
@@ -37,7 +41,9 @@ D a-strmap.ads		20170308151938 e8bb714a ada.strings.maps%s
 D a-strunb.ads		20170308151943 3f91d4c5 ada.strings.unbounded%s
 D a-tags.ads		20170308151938 01f5e3ef ada.tags%s
 D a-textio.ads		20170308151938 386df5d4 ada.text_io%s
+D a-tiinio.ads		20170308151938 aa04e5d6 ada.text_io.integer_io%s
 D a-unccon.ads		20170308151943 f9eb8f06 ada.unchecked_conversion%s
+D conveyance3.ads	20170504180407 0cb78195 conveyance3%s
 D interfac.ads		20170308151943 4be8ce1b interfaces%s
 D i-cstrea.ads		20170308151938 e53d8b8e interfaces.c_streams%s
 D system.ads		20170308151943 6326c08a system%s
@@ -63,55 +69,75 @@ D s-traent.ads		20170308151938 005bf670 system.traceback_entries%s
 D s-unstyp.ads		20170308151943 9d58a4c0 system.unsigned_types%s
 D s-valint.ads		20170308151938 48a52a3f system.val_int%s
 D s-wchcon.ads		20170308151938 1b7d22d2 system.wch_con%s
-D z1.adb		20170424164244 762459da z1%b
+D z1.adb		20170504181025 b3bfd52c z1%b
 X 1 ada.ads
-16K9*Ada 19e8 39|1r6 1r23 2r6 2r33 39r18
-X 8 a-string.ads
-16K13*Strings 35e16 39|2r10 2r37 39r22
-X 10 a-strunb.ads
-76K21*Unbounded 489e26 39|2w18 2r45 39r30
-79R9*Unbounded_String<5|43R9> 473e14 39|21r13
-82r4*Null_Unbounded_String{79R9} 39|21r33
-94V13*To_Unbounded_String{79R9} 39|39s40
-100V13*To_String{string} 39|31s35
-111U14*Append 39|30s5
-112r7 Source{79R9} 39|30r12
-113a7 New_Item{string} 39|30r29
-X 12 a-textio.ads
-49K13*Text_IO 471e16 39|1w10 1r27
-52P9*File_Type 39|20r12
-53n23*In_File{53E9} 39|27r18
-92U14*Open 39|26s5
-93p7 File{52P9} 39|26r10
-94e7 Mode{53E9} 39|27r10
-95a7 Name{string} 39|28r10
-98U14*Close 39|44s5
-183V13*End_Of_File{boolean} 39|38s19
-242U14*Put 39|34s9
-244U14*Get_Line 39|29s5
-253V13*Get_Line{string} 39|39s60
-X 16 system.ads
+16K9*Ada 19e8 42|1r6 1r23 2r6 3r6 3r33 47r4 49r4 66r18
+X 6 a-inteio.ads
+18K13*Integer_Text_IO[14|46] 42|2w10 47r8 49r8
+X 9 a-string.ads
+16K13*Strings 35e16 42|3r10 3r37 66r22
+X 11 a-strunb.ads
+76K21*Unbounded 489e26 42|3w18 3r45 66r30
+79R9*Unbounded_String<5|43R9> 473e14 42|23r13
+82r4*Null_Unbounded_String{79R9} 42|23r33
+94V13*To_Unbounded_String{79R9} 42|66s40
+100V13*To_String{string} 42|58s35
+111U14*Append 42|57s5
+112r7 Source{79R9} 42|57r12
+113a7 New_Item{string} 42|57r29
+X 13 a-textio.ads
+49K13*Text_IO 471e16 42|1w10 1r27
+52P9*File_Type 42|22r12
+53n23*In_File{53E9} 42|54r18
+92U14*Open 42|53s5
+93p7 File{52P9} 42|53r10
+94e7 Mode{53E9} 42|54r10
+95a7 Name{string} 42|55r10
+98U14*Close 42|71s5
+166U14*New_Line 42|51s4
+183V13*End_Of_File{boolean} 42|65s19
+242U14*Put 42|46s4 48s4 50s4 61s9
+244U14*Get_Line 42|56s5
+253V13*Get_Line{string} 42|66s60
+X 14 a-tiinio.ads
+66U14*Put 42|47s24[6|18] 49s24[6|18]
+X 16 conveyance3.ads
+1K9*Conveyance3 53e16 42|4w6 4r23
+4R9*TRANSPORT 38e17 42|28r15 38r16 41r15
+6U14*Set_Values 42|35s5 38s5 41s4
+9V13*Get_Wheels{integer} 42|47s28
+13R9*CAR<4R9> 43e17 42|29r15 30r15
+15U14*Set_Values 42|37s5 40s5
+20R9*TRUCK<4R9> 49e17 42|31r15 32r15
+22U14*Set_Values 42|43s4 44s4
+27V13*Get_Passenger_Count{integer} 42|49s28
+X 19 system.ads
 67M9*Address
-X 24 s-memory.ads
-53V13*Alloc{16|67M9} 103i<c,__gnat_malloc>22
+X 27 s-memory.ads
+53V13*Alloc{19|67M9} 103i<c,__gnat_malloc>22
 68U14*Free 104i<c,__gnat_free>22
-76V13*Realloc{16|67M9} 105i<c,__gnat_realloc>22
-X 30 s-stalib.adb
+76V13*Realloc{19|67M9} 105i<c,__gnat_realloc>22
+X 33 s-stalib.adb
 93U14 Break_Start 94i<c,__gnat_break_start>22
-X 39 z1.adb
-5U11*z1 5b11 46l5 46t7
-7R10 Stacja 11e15 14r47
-8i9 Id_Stacji{integer}
-9i9 Czas_Zwrotnicy{integer}
-10b9 Czy_Wolna{boolean}
-13I13 positive{integer} 14r26
-14A10 Stacje(7R10)<integer> 24r20
-16N5 Buffer_Size 18r24
-17i5 Last{natural} 29m25
-18a5 Item{string} 29m19 30r41
-20p5 File{12|52P9} 26m18 26r18 29r14 38r31 39r69 44m11 44r11
-21r5 Value{10|79R9} 30m22 30r22 31r45 39m9
-23i5 Ilosc_Stacji{integer} 31m5
-24a5 Array_Stacje{14A10} 33r14
-33i9 I{integer} 34r27
+X 42 z1.adb
+7U11*z1 7b11 73l5 73t7
+9R10 Stacja 13e15 16r47
+10i9 Id_Stacji{integer}
+11i9 Czas_Zwrotnicy{integer}
+12b9 Czy_Wolna{boolean}
+15I13 positive{integer} 16r26
+16A10 Stacje(9R10)<integer> 26r20
+18N5 Buffer_Size 20r24
+19i5 Last{natural} 56m25
+20a5 Item{string} 56m19 57r41
+22p5 File{13|52P9} 53m18 53r18 56r14 65r31 66r69 71m11 71r11
+23r5 Value{11|79R9} 57m22 57r22 58r45 66m9
+25i5 Ilosc_Stacji{integer} 58m5
+26a5 Array_Stacje{16A10} 60r14
+28r5 Hummer{16|4R9} 35m16 35r16
+29r5 Limo{16|13R9} 37m16 37r16 38m26 38r26
+30r5 Chevy{16|13R9} 40m16 40r16 41m25 41r25
+31r5 Dodge{16|20R9} 43m15 43r15
+32r5 Ford{16|20R9} 44m15 44r15 47r39 49r48
+60i9 I{integer} 61r27
 

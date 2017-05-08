@@ -1,0 +1,78 @@
+V "GNAT Lib v6"
+P SS ZX
+
+RN
+RV NO_DISPATCHING_CALLS
+RV NO_FLOATING_POINT
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_SECONDARY_STACK
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_ELABORATION_CODE
+RV SPARK_05
+
+U conveyance3%b		conveyance3.adb		6bdd7357 NE OO PK
+
+U conveyance3%s		conveyance3.ads		0cb78195 EE OO PF PK
+W ada.exceptions%s	a-except.adb		a-except.ali
+W ada.streams%s		a-stream.adb		a-stream.ali
+W ada.tags%s		a-tags.adb		a-tags.ali
+W system%s		system.ads		system.ali
+W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+W system.storage_elements%s  s-stoele.adb	s-stoele.ali
+W system.stream_attributes%s  s-stratt.adb	s-stratt.ali
+
+D ada.ads		20170308151943 3ffc8e18 ada%s
+D a-except.ads		20170308151938 291912d5 ada.exceptions%s
+D a-stream.ads		20170308151938 119b8fb3 ada.streams%s
+D a-tags.ads		20170308151938 01f5e3ef ada.tags%s
+D a-unccon.ads		20170308151943 f9eb8f06 ada.unchecked_conversion%s
+D conveyance3.ads	20170504180407 0cb78195 conveyance3%s
+D conveyance3.adb	20170504175954 676af2c2 conveyance3%b
+D system.ads		20170308151943 6326c08a system%s
+D s-exctab.ads		20170308151938 54135002 system.exception_table%s
+D s-parame.ads		20170308151938 7e2a0d7f system.parameters%s
+D s-secsta.ads		20170308151943 86a2856d system.secondary_stack%s
+D s-soflin.ads		20170308151938 14e1eb6c system.soft_links%s
+D s-stache.ads		20170308151938 a37c21ec system.stack_checking%s
+D s-stalib.ads		20170308151938 09bd3940 system.standard_library%s
+D s-stoele.ads		20170308151938 2dc34a04 system.storage_elements%s
+D s-stoele.adb		20170308151938 ed88f8fb system.storage_elements%b
+D s-stratt.ads		20170308151938 aedef97e system.stream_attributes%s
+D s-traent.ads		20170308151938 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20170308151943 9d58a4c0 system.unsigned_types%s
+X 6 conveyance3.ads
+1K9*Conveyance3 34E9 53l5 53e16 7|1b14 64l5 64t16
+4R9*TRANSPORT 6p14 6r45 9p13 9r37 10p13 10r37 13r20 20r22 30r24 34c9 38e17
+. 40r20 45r22 51r24 7|4r42 13r34 19r34 51r15
+6U14*Set_Values 6=25 7>25 8>25 7|4b11 10l5 10t15 51s4
+6r25 Vehicle_In{4R9} 7|4b22 8m4 9m4
+7i25 Wheels_In{integer} 7|5b22 8r25
+8f25 Weight_In{float} 7|6b22 9r25
+9V13*Get_Wheels{integer} 9>24 7|13b10 16l5 16t15
+9r24 Vehicle_In{4R9} 7|13b21 15r11
+10V13*Get_Weight{float} 10>24 7|19b10 22l5 22t15
+10r24 Vehicle_In{4R9} 7|19b21 21r11
+13R9*CAR<4R9> 6p14 9p13 10p13 15p14 15r45 17p13 17r46 40c9 43e17 7|26r42
+. 33r43
+15U14*Set_Values 15=25 16>25 7|26b11 30l5 30t15
+15r25 Vehicle_In{13R9} 7|26b22 29m4
+16i25 Passenger_Count_In{integer} 7|27b22 29r34
+17V13*Get_Passenger_Count{integer} 17>33 7|33b10 36l5 36t24
+17r33 Vehicle_In{13R9} 7|33b30 35r11
+20R9*TRUCK<4R9> 6p14 9p13 10p13 22p14 22r45 27p13 27r46 45c9 49e17 7|40r42
+. 59r43
+22U14*Set_Values 22=25 23>25 24>25 25>25 26>25 7|40b11 56l5 56t15
+22r25 Vehicle_In{20R9} 7|40b22 47m4 48m4 51m25 51r25 54m4 55m4
+23i25 Wheels_In{integer} 7|41b22 47r25 51r38
+24f25 Weight_In{float} 7|42b22 48r25 51r49
+25i25 Passenger_Count_In{integer} 7|43b22 54r34
+26f25 Payload_In{float} 7|44b22 55r26
+27V13*Get_Passenger_Count{integer} 27>33 7|59b10 62l5 62t24
+27r33 Vehicle_In{20R9} 7|59b30 61r11
+30R9*BICYCLE<4R9> 6p14 9p13 10p13 51c9 51e50
+36i10*Wheels{integer} 7|8m15 15r22 47m15
+37f10*Weight{float} 7|9m15 21r22 48m15
+42i10 Passenger_Count{integer} 7|29m15 35r22
+47i10 Passenger_Count{integer} 7|54m15 61r22
+48f10 Payload{float} 7|55m15
+

@@ -7,6 +7,7 @@ class Node<T> {
     private Node<T> left;
     private Node<T> right;
     private Node<T> parent;
+    private int size;
     private T value;
 
     /**
@@ -18,6 +19,7 @@ class Node<T> {
         this.left = null;
         this.right = null;
         this.parent = null;
+        this.size = 1;
     }
 
     /**
@@ -30,6 +32,7 @@ class Node<T> {
         this.left = null;
         this.right = null;
         this.parent = parent;
+        this.size = 1;
     }
 
     /**
@@ -60,6 +63,14 @@ class Node<T> {
     T getValue(){
         return value;
     }
+
+    /**
+     * zwraca wielkosc poddrzewa
+     * @return wielkosc poddrzewa
+     */
+    int getSize() {
+        return size;
+    }
     /**
      * zmienia wartosc node
      * @param value wartosc
@@ -87,5 +98,13 @@ class Node<T> {
      */
     void setParent(Node<T> parent){
         this.parent = parent;
+    }
+
+    void inSize() {
+        size++;
+    }
+
+    void decSize() {
+        size--;
     }
 }

@@ -4,7 +4,7 @@ package main;
  * Created by aedd on 5/10/17
  */
 
-public class BinaryTree <T extends Comparable<T>>{
+class BinaryTree <T extends Comparable<T>>{
 
     private long number_of_compare = 0;
     Node<T> root;
@@ -48,6 +48,7 @@ public class BinaryTree <T extends Comparable<T>>{
     void insert(T value, Node<T> up) {
         if(root == null) root = new Node<>(value);
         else{
+            up.inSize();
             if( up.getValue().compareTo(value) >= 0){
                 if(up.getLeft() != null)
                     insert(value, up.getLeft());
@@ -70,8 +71,11 @@ public class BinaryTree <T extends Comparable<T>>{
         if(up!=null){
             if(up.getLeft()==null && up.getRight()==null){
                 if(up.getParent()==null) root=null;  //up is root
-                else if(up.getParent().getLeft()==up) up.getParent().setLeft(null);
-                else if(up.getParent().getRight()==up)up.getParent().setRight(null);
+                else{
+                    decToParent(up);
+                    if(up.getParent().getLeft()==up) up.getParent().setLeft(null);
+                    else if(up.getParent().getRight()==up)up.getParent().setRight(null);
+                }
             }
             else if(up.getLeft()==null || up.getRight()==null){
                 if(up.getLeft()==null){
@@ -80,11 +84,13 @@ public class BinaryTree <T extends Comparable<T>>{
                         root.setParent(null);
                     }
                     else if(up.getParent().getRight()==up){
+                        decToParent(up);
                         up.getParent().setRight(up.getRight());
                         up.getRight().setParent(up.getParent());
                     }
                     else if(up.getParent().getLeft()==up)
                     {
+                        decToParent(up);
                         up.getParent().setLeft(up.getRight());
                         up.getRight().setParent(up.getParent());
                     }
@@ -95,11 +101,13 @@ public class BinaryTree <T extends Comparable<T>>{
                         root.setParent(null);
                     }
                     else if(up.getParent().getRight()==up){
+                        up.getParent().decSize();
                         up.getParent().setRight(up.getLeft());
                         up.getLeft().setParent(up.getParent());
                     }
                     else if(up.getParent().getLeft()==up)
                     {
+                        up.getParent().decSize();
                         up.getParent().setLeft(up.getLeft());
                         up.getLeft().setParent(up.getParent());
                     }
@@ -139,7 +147,7 @@ public class BinaryTree <T extends Comparable<T>>{
             if(up.getLeft()!=null) {
                 draw(up.getLeft());
             }
-            System.out.print(up.getValue()+" ");
+            System.out.print(up.getValue()+"("+up.getSize()+")"+" ");
             if(up.getRight() != null) draw(up.getRight());
         }
     }
@@ -164,5 +172,45 @@ public class BinaryTree <T extends Comparable<T>>{
             }
             System.out.println(n.getValue());
         }
+    }
+
+    private void decToParent(Node<T> node) {
+        Node<T> n = node;
+        while (n.getParent() != null) {
+            n.getParent().decSize();
+            n = n.getParent();
+        }
+    }
+
+    /**
+     * szukanie itej statystyki pozycyjnej
+     * @param n wezel od ktorego zaczynamy szukac
+     * @param i ita statystyka pozycyjna
+     * @return wartosc itej statystyki pozycyjnej
+     */
+    T OS_Select(Node<T> n, int i) {
+        int r = 1;
+        if(n.getLeft() != null) r+= n.getLeft().getSize();
+        if (i == r) {
+            return n.getValue();
+        } else if ( i < r ) {
+            return OS_Select(n.getLeft(), i);
+        } else return OS_Select(n.getRight(), i - r);
+    }
+
+    int OS_Rank(Node<T> node) {
+        int r = 1;
+        if(node.getLeft() != null) r+= node.getLeft().getSize();
+        Node<T> tmp = node;
+        while(tmp != root) {
+            if(tmp == tmp.getParent().getRight()) {
+                r += 1;
+                if(tmp.getParent().getLeft() != null) {
+                    r+= tmp.getParent().getLeft().getSize();
+                }
+            }
+            tmp = tmp.getParent();
+        }
+        return r;
     }
 }

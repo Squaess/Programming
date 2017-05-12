@@ -6,7 +6,7 @@ package main;
 
 class BinaryTree <T extends Comparable<T>>{
 
-    private long number_of_compare = 0;
+    long number_of_compare = 0;
     Node<T> root;
 
     /**
@@ -190,10 +190,13 @@ class BinaryTree <T extends Comparable<T>>{
      */
     T OS_Select(Node<T> n, int i) {
         int r = 1;
+        number_of_compare++;
         if(n.getLeft() != null) r+= n.getLeft().getSize();
         if (i == r) {
+            number_of_compare++;
             return n.getValue();
         } else if ( i < r ) {
+            number_of_compare++;
             return OS_Select(n.getLeft(), i);
         } else return OS_Select(n.getRight(), i - r);
     }

@@ -2,6 +2,7 @@ package main;
 
 import java.io.*;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.zip.CRC32;
 import java.util.zip.Checksum;
 
@@ -39,8 +40,8 @@ public class Framer {
     public static void main(String[] args) {
         System.out.println("Hello");
          /*
-                *       Wczytujemy źródłowy plik tekstowy 'Z'
-                */
+          *       Wczytujemy źródłowy plik tekstowy 'Z'
+          */
         BufferedReader in = null;
         BufferedWriter out = null;
         try {
@@ -56,6 +57,38 @@ public class Framer {
         }
 
         String line, frame;
+        try {
+            while ((line = in.readLine()) != null) {
+                /*
+                 *  Dzielimy tekst na porcje po 32 bity
+                 */
+                int m = 32;
+
+                for (int n = 0; n < line.length(); n+=m) {
+                    if( n+m > line.length()) {
+                        m = line.length() - n;
+                    }
+                    frame = line.substring(n,n+m);
+                    /*
+                    Obliczamy pole kontrolne CRC
+                     */
+                    final byte[] ba = frame.getBytes(UTF8Charset);
+                    long bb = calculateCRC32(ba);
+                    String crc = Long.toBinaryString(bb);
+                    frame = biteStuffing(frame);
+
+                    frame = "01111110" + frame + crc + "01111110";
+                    System.out.println(frame +" " +crc.length());
+                    out.write(frame);
+                    out.write("\n");
+                }
+
+            }
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 //        try {
 //            while ((line = in.readLine()) != null)   {
 //                /*
@@ -124,23 +157,47 @@ public class Framer {
 //            e.printStackTrace();
 //        }
 
-        String s = "S";
-        byte[] b = s.getBytes(UTF8Charset);
-        System.out.println(b[0]);
+    }
 
-        String s1 = "01010011";
+    private static String biteStuff(String data) {
+        if (data.contains("11111")) {
+            String[] d = data.split("11111");
+            if (d.length > 0) {
+                if (d.length > 2) {
+                    for (int i = 1; i < d.length; i++) {
+                        d[i] = "0" + d[i];
+                    }
+                }
+                String ret = "";
+                for (int i = 0; i < d.length; i++) {
+                    if (i + 1 >= d.length) {
+                        ret = ret + d[i];
+                    } else {
+                        ret = ret + d[i] + "11111";
+                    }
+                }
+                return ret;
+            } else return "kok";
+        } else return data;
+    }
 
-        int i = Integer.parseInt(s1,2);
-
-        System.out.println(s1);
-        byte[] ba =  s1.getBytes(UTF8Charset) ;
-        System.out.println(ba[0]);
-        long n = calculateCRC32(b);
-
-
-        System.out.println(n);
-        n = calculateCRC32(b);
-        System.out.println(n);
-
+    private static String biteStuffing(String data) {
+        ArrayList<Character> chars = new ArrayList<Character>();
+        char[] c = data.toCharArray();
+        for (char ch: c){
+            chars.add(ch);
+        }
+        int number_of_ones = 0;
+        for(int i = 0; i < chars.size(); i++){
+            if (chars.get(i) == '0') number_of_ones =0;
+            else number_of_ones++;
+            if(number_of_ones == 5) chars.add(i+1, '0');
+        }
+        String ret = "";
+        while(!chars.isEmpty()) {
+            ret = chars.get(chars.size()-1) + ret;
+            chars.remove(chars.size()-1);
+        }
+        return ret;
     }
 }

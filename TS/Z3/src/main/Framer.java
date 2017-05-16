@@ -1,184 +1,109 @@
 package main;
 
 import java.io.*;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.zip.CRC32;
-import java.util.zip.Checksum;
+import java.util.Scanner;
 
 /**
  * Created by aedd on 5/10/17
  */
 public class Framer {
 
-    private static final Charset UTF8Charset = Charset.forName( "UTF-8" );
+    private static final String readFile_Name = "./Z.txt";
+    private static final String writeFile_Name = "./W.txt";
+    private static final String FLAG = "01111110";
 
-    /**
-     * Calc CRC-32 with Sun method
-     *
-     * @param ba byte array to compute CRC on
-     *
-     * @return 32-bit CRC, signed
-     */
-    private static int sunCRC32( byte[] ba ) {
-        // create a new CRC-calculating object
-        final CRC32 crc = new CRC32();
-        crc.update( ba );
-        // crc.update( int ) processes only the low order 8-bits. It actually expects an unsigned byte.
-        return ( int ) (crc.hashCode());
+    private static String checkSum_CRC8(String input) {
+        StringBuffer frame = new StringBuffer();
+        frame.append(input);
+
+        String divider = "11000011";
+
+        frame.append("00000000");
+
+        for (int i = 0; i < frame.length() - 8; i++) {
+            String s = frame.substring(i,i+8);
+            String o = "";
+            if(s.startsWith("1")) {
+
+                for (int j = 0; j < divider.length(); j++) {
+                    o += s.charAt(j)^divider.charAt(j) ;
+                }
+
+                frame.replace(i,i+8, o);
+            }
+        }
+        return frame.toString().substring(frame.length()-8);
     }
-
-    private static long calculateCRC32(byte[] ba) {
-        Checksum checksum = new CRC32();
-
-        checksum.update(ba, 0, ba.length);
-        return checksum.getValue();
-    }
-
-
 
     public static void main(String[] args) {
-        System.out.println("Hello");
-         /*
-          *       Wczytujemy źródłowy plik tekstowy 'Z'
-          */
-        BufferedReader in = null;
-        BufferedWriter out = null;
-        try {
-            in = new BufferedReader(new FileReader("./Z.txt"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+
+        Scanner in = new Scanner(System.in);
+        boolean keep_going = true;
+
+        while(keep_going) {
+            System.out.print("\033[H\033[2J");
+            System.out.println("1. Zakoduj");
+            System.out.println("2. Odkoduj");
+
+            int choice = in.nextInt();
+
+            switch (choice) {
+                case 1:
+                    String file = readFile(readFile_Name);
+                    code_and_write(file);
+                    keep_going = false;
+                    break;
+                case 2:
+                    file = readFile(writeFile_Name);
+                    decode_and_write(file);
+                    keep_going = false;
+                    break;
+                default:
+                    System.out.println("Zly wybor");
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+            }
         }
 
+    }
+
+    private static void decode_and_write(String data) {
+
+        BufferedWriter out = null;
         try {
-            out = new BufferedWriter(new FileWriter("./W.txt"));
+            out = new BufferedWriter(new FileWriter("./Z_copy.txt"));
         } catch (IOException e) {
             e.printStackTrace();
         }
+        String to_write;
+        // Usuwamy flagi
+        data = data.replace(FLAG+FLAG, " ");
+        data = data.replace( FLAG,"");
 
-        String line, frame;
+        String[] frames = data.split(" ");
+
+        for(int i = 0; i < frames.length; i++) {
+            frames[i] = frames[i].replace("111110","11111");
+        }
         try {
-            while ((line = in.readLine()) != null) {
-                /*
-                 *  Dzielimy tekst na porcje po 32 bity
-                 */
-                int m = 32;
-
-                for (int n = 0; n < line.length(); n+=m) {
-                    if( n+m > line.length()) {
-                        m = line.length() - n;
-                    }
-                    frame = line.substring(n,n+m);
-                    /*
-                    Obliczamy pole kontrolne CRC
-                     */
-                    final byte[] ba = frame.getBytes(UTF8Charset);
-                    long bb = calculateCRC32(ba);
-                    String crc = Long.toBinaryString(bb);
-                    frame = biteStuffing(frame);
-
-                    frame = "01111110" + frame + crc + "01111110";
-                    System.out.println(frame +" " +crc.length());
-                    out.write(frame);
-                    out.write("\n");
+            for (String s : frames) {
+                String crc = s.substring(s.length() - 8);
+                String frame = s.substring(0, s.length() - 8);
+                if (crc.equals(checkSum_CRC8(frame))) {
+                    to_write = frame;
+                } else {
+                    to_write = "Ramka " + frame + "posiada nieprawidłowy crc";
                 }
-
+                out.write(to_write + "\n");
             }
             out.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-//        try {
-//            while ((line = in.readLine()) != null)   {
-//                /*
-//                 *      Dzielimy tekst na ramki, 8 bitów każda  (S tekst T)
-//                 */
-//                //public String substring(int startIndex,int endIndex)
-//                int m = 8;
-//                for (int n = 0; n < line.length(); n+=8) {
-//                    frame = "S"+line.substring(n, m);
-//                    /*
-//                     *      Dla każdej ramki obliczamy pole kontrolne CRC i wstawiamy do ramki
-//                     */
-//                    final byte[] ba = frame.getBytes( UTF8Charset );
-//                    //System.out.println( sunCRC32( ba ) );
-//                    int bb = sunCRC32( ba );
-//                    //System.out.println(Integer.toBinaryString(bb));
-//                    String bc = Integer.toBinaryString(bb); //suma kontrolna wyrażona binarnie
-//                    frame = frame + "E" + bc + "T"; //miedzy Escape a Termination stoi CRC
-//                    /*
-//                     *      Ramki zapisujemy kolejno do pliku tekstowego 'W'
-//                     */
-//                    System.out.println(frame);
-//                    out.write(frame);
-//                    m += 8;
-//                    out.write('\n');
-//                }
-//                out.close();
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-//        try {
-//            while ((line = in.readLine()) != null)   {
-//                /*
-//                 *      Dzielimy tekst na ramki, 8 bitów każda  (S tekst T)
-//                 */
-//                //public String substring(int startIndex,int endIndex)
-//                int m = 8;
-//                for (int n = 0; n < line.length(); n+=8) {
-//                   // frame = Integer.toBinaryString('S') +line.substring(n, m);
-//                    frame = "S" + line.substring(n, m);
-//                    System.out.println(frame);
-//                    /*
-//                     *      Dla każdej ramki obliczamy pole kontrolne CRC i wstawiamy do ramki
-//                     *      obliczamy razem z S czy bez niego ?? chyba razem
-//                     */
-//                    final byte[] ba = frame.getBytes( UTF8Charset );
-//                    System.out.println( new String (ba, UTF8Charset) );
-//                    //System.out.println( sunCRC32( ba ) );
-//                    int bb = sunCRC32( ba );
-//                    //System.out.println(Integer.toBinaryString(bb));
-//                    String bc = Integer.toBinaryString(bb); //suma kontrolna wyrażona binarnie
-//                    frame = frame + "E" + bc + "T"; //miedzy Escape a Termination stoi CRC
-//                                        /*
-//                                         *      Ramki zapisujemy kolejno do pliku tekstowego 'W'
-//                                         */
-//                    System.out.println(frame);
-//                    out.write(frame);
-//                    m += 8;
-//                    out.write('\n');
-//                }
-//                out.close();
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-    }
-
-    private static String biteStuff(String data) {
-        if (data.contains("11111")) {
-            String[] d = data.split("11111");
-            if (d.length > 0) {
-                if (d.length > 2) {
-                    for (int i = 1; i < d.length; i++) {
-                        d[i] = "0" + d[i];
-                    }
-                }
-                String ret = "";
-                for (int i = 0; i < d.length; i++) {
-                    if (i + 1 >= d.length) {
-                        ret = ret + d[i];
-                    } else {
-                        ret = ret + d[i] + "11111";
-                    }
-                }
-                return ret;
-            } else return "kok";
-        } else return data;
     }
 
     private static String biteStuffing(String data) {
@@ -197,6 +122,78 @@ public class Framer {
         while(!chars.isEmpty()) {
             ret = chars.get(chars.size()-1) + ret;
             chars.remove(chars.size()-1);
+        }
+        return ret;
+    }
+
+    private static void code_and_write(String data) {
+
+        //otwieramy strumień do zapisu
+        BufferedWriter out = null;
+        try {
+            out = new BufferedWriter(new FileWriter("./W.txt"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String frame;
+        int m = 32;
+        try {
+            //Dzielimy strumien bitów na porcję po 32 bity
+            for (int n = 0; n < data.length(); n += m) {
+                //jesli nie ma 32 to bierzemy to co zostało
+                if (n + m > data.length()) {
+                    m = data.length() - n;
+                }
+                frame = data.substring(n, n + m);
+                /*
+                 * Obliczamy pole kontrolne CRC
+                 */
+                String crc = checkSum_CRC8(frame);
+                frame += crc;
+                /*
+                 * Stosujemy metody bite stuffing
+                 */
+                frame = biteStuffing(frame);
+                /*
+                 * Dodajemy flagi poczatku i konca
+                 */
+                frame = "01111110" + frame + "01111110";
+
+                out.write(frame);
+                out.write("\n");
+
+            }
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static String readFile(String readFile_name) {
+        String ret = "";
+        String tmp;
+
+        File inputFile = new File(readFile_name);
+
+        try {
+            BufferedReader reader = new BufferedReader( new FileReader(inputFile));
+            while( (tmp = reader.readLine() ) != null) {
+                ret += tmp;
+            }
+
+            reader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+            e.printStackTrace();
+            System.exit(0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if(ret.isEmpty()) {
+            System.out.println("Input file is empty");
+            System.exit(0);
         }
         return ret;
     }

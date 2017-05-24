@@ -3,22 +3,62 @@ package main;
 /**
  * Created by Bartosz on 16.05.2017
  */
-class Cable_unit extends Thread {
+class Cable_unit {
 
-    Cable_unit left = null;
-    Cable_unit right = null;
-    String value;
-    String side;
+    private Host master;
+    private int position;
+    private int signalDuration;
+    private Direction direction;
+    private boolean basic = true;
 
-    Cable_unit(String value) {
-        this.value = value;
+    Cable_unit(Host h, int position, int signalDuration, Direction dir) {
+        this.master = h;
+        this.position = position;
+        this.signalDuration = signalDuration;
+        this.direction = dir;
     }
-    Cable_unit() {
-        this.value = "-";
+
+    void tick() {
+        signalDuration--;
+
+        if(basic){
+            basic = false;
+            return;
+        }
+
+        if(direction==Direction.RIGHT){
+            position++;
+
+            if(position >= Ethernet.getLength()){
+                signalDuration = 0;
+                position--;
+            }
+        } else {
+            position--;
+            if(position<0){
+                signalDuration = 0;
+                position++;
+            }
+        }
     }
 
-    @Override
-    public void run() {
+    public int getSignalDuration() {
+        return signalDuration;
+    }
 
+    public Host getMaster() {
+        return master;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+    
+    Direction getDirection(){
+        return direction;
+    }
+
+    public void lost() {
+        master = null;
     }
 }

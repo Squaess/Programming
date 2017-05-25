@@ -4,7 +4,7 @@ package graph;
  * Created by Bartosz on 25.05.2017
  */
 
-public class Edge {
+public class Edge implements Comparable<Edge> {
     public int src, dest;
     public double weight;
 
@@ -17,4 +17,11 @@ public class Edge {
      Edge(){
 
      }
+
+    @Override
+    public int compareTo(Edge compareEdge) {
+        if (this.weight == compareEdge.weight) return 0;
+        else if (this.weight > compareEdge.weight) return 1;
+        else return -1;
+    }
 }

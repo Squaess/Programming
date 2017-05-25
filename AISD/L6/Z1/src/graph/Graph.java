@@ -8,10 +8,15 @@ import main.MyQueue;
 
 public class Graph {
 
-    int V, E;
+    private int V, E;
     public Edge[] edges;
+    public double[][] matrix;
 
     public Graph(int V, int E){
+        matrix = new double[V][V];
+        for (int i = 0; i<matrix.length; i++){
+            matrix[i][i] = 0;
+        }
         this.E = E;
         this.V = V;
         edges = new Edge[E];
@@ -39,6 +44,7 @@ public class Graph {
     }
 
     public void KruskaMST() throws Exception {
+
         Edge[] result = new Edge[V];
         int e = 0;
         int i = 0;
@@ -61,7 +67,7 @@ public class Graph {
 
         while( e < V -1){
             Edge next_edge = new Edge();
-            next_edge = heap.heap_Extraxt_Max();
+            next_edge = (Edge) heap.heap_Extraxt_Max();
 
             int x = find(subsets, next_edge.src);
             int y = find(subsets, next_edge.dest);
@@ -77,12 +83,35 @@ public class Graph {
         }
     }
 
+    public void PrimMST() {
+
+        int[] MST = new int[V];
+        Vertex[] NotInMST = new Vertex[V];
+        for (int i = 0; i<V; i++){
+            // dla kazdego wierzcholka znajdujemy najmniejsza wage krawedzi
+            double weight = Double.MAX_VALUE;
+            for(int j = 0; j < matrix[i].length; j++){
+                if(i != j){
+                    if(matrix[i][j] < weight){
+                        weight = matrix[i][j];
+                    }
+                }
+            }
+            NotInMST[i] = new Vertex(i,weight);
+        }
+        NotInMST[0].weight = 0;
+        MyQueue<Vertex> heap = new MyQueue<>(NotInMST);
+
+    }
+
     public void printSumWeight(){
         double suma = 0;
-        for (Edge e:edges){
+
+        for (Edge e : edges){
             suma += e.weight;
             System.out.print(e.weight+" ");
         }
         System.out.println("Suma wszystkich krawedzi: "+suma);
     }
+
 }

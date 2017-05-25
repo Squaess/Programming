@@ -16,7 +16,7 @@ class MyQueue {
         }
     }
 
-    int parent(int i){
+    private int parent(int i){
         return (i-1)/2;
     }
 
@@ -31,16 +31,16 @@ class MyQueue {
     private void heapify(int i){
         int l = left(i);
         int r = right(i);
-        int largest;
-        if(l < heapSize && A[l] > A[i]){
-            largest = l;
-        } else largest = i;
-        if (r < heapSize && A[r] > A[largest]) {
-            largest = r;
+        int smallest;
+        if(l < heapSize && A[l] < A[i]){
+            smallest = l;
+        } else smallest = i;
+        if (r < heapSize && A[r] < A[smallest]) {
+            smallest = r;
         }
-        if (largest != i) {
-            swap(i,largest);
-            heapify(largest);
+        if (smallest != i) {
+            swap(i,smallest);
+            heapify(smallest);
         }
     }
 
@@ -53,5 +53,38 @@ class MyQueue {
     void print(){
         for (int i : A) System.out.print(i+" ");
         System.out.print("\n");
+    }
+
+    int heap_max(){
+        return A[0];
+    }
+
+    int heap_Extraxt_Max() throws Exception {
+        if(heapSize<1) {
+            throw new Exception("Pusta kolejka");
+        }
+        int ret = A[0];
+        A[0] = A[heapSize-1];
+        heapSize--;
+        heapify(0);
+        return ret;
+    }
+
+    void insert(int value) throws Exception {
+        if(heapSize>= A.length){
+            throw new Exception("Queue is full");
+        }
+        heapSize++;
+        int i = heapSize;
+        while(i>0 && A[parent(i)]>value){
+            A[i] = A[parent(i)];
+            i = parent(i);
+        }
+        A[i] = value;
+    }
+
+    void decreaseKey(int index, int newKey){
+        A[index] = newKey;
+        heapify(index);
     }
 }

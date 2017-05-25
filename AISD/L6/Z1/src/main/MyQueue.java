@@ -1,14 +1,16 @@
 package main;
 
+import graph.Edge;
+
 /**
  * Created by Bartosz on 24.05.2017
  */
 
-class MyQueue {
-    private int[] A;
+public class MyQueue {
+    private Edge[] A;
     private int heapSize;
 
-    MyQueue(int[] Arr){
+    public MyQueue(Edge[] Arr){
         this.heapSize = Arr.length;
         this.A = Arr;
         for (int i = (Arr.length/2)-1; i>= 0; i--){
@@ -32,10 +34,10 @@ class MyQueue {
         int l = left(i);
         int r = right(i);
         int smallest;
-        if(l < heapSize && A[l] < A[i]){
+        if(l < heapSize && A[l].weight < A[i].weight){
             smallest = l;
         } else smallest = i;
-        if (r < heapSize && A[r] < A[smallest]) {
+        if (r < heapSize && A[r].weight < A[smallest].weight) {
             smallest = r;
         }
         if (smallest != i) {
@@ -45,46 +47,45 @@ class MyQueue {
     }
 
     private void swap(int a, int b) {
-        int v1 = A[a];
+        Edge v1 = A[a];
         A[a] = A[b];
         A[b] = v1;
     }
 
     void print(){
-        for (int i : A) System.out.print(i+" ");
-        System.out.print("\n");
+        for (Edge i : A) System.out.print(i.src+"---"+i.dest+" "+i.weight+"\n");
     }
 
-    int heap_max(){
+    public Edge heap_max(){
         return A[0];
     }
 
-    int heap_Extraxt_Max() throws Exception {
+    public Edge heap_Extraxt_Max() throws Exception {
         if(heapSize<1) {
             throw new Exception("Pusta kolejka");
         }
-        int ret = A[0];
+        Edge ret = A[0];
         A[0] = A[heapSize-1];
         heapSize--;
         heapify(0);
         return ret;
     }
 
-    void insert(int value) throws Exception {
+    public void insert(Edge value) throws Exception {
         if(heapSize>= A.length){
             throw new Exception("Queue is full");
         }
         heapSize++;
         int i = heapSize;
-        while(i>0 && A[parent(i)]>value){
+        while(i>0 && A[parent(i)].weight > value.weight){
             A[i] = A[parent(i)];
             i = parent(i);
         }
         A[i] = value;
     }
 
-    void decreaseKey(int index, int newKey){
-        A[index] = newKey;
+    public void decreaseKey(int index, int newKey){
+        A[index].weight = newKey;
         heapify(index);
     }
 }

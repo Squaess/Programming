@@ -7,7 +7,7 @@ import graph.Edge;
  */
 
 public class MyQueue <T extends Comparable<T>> {
-    private T[] A;
+    public T[] A;
     private int heapSize;
 
     public MyQueue(T[] Arr){
@@ -88,5 +88,9 @@ public class MyQueue <T extends Comparable<T>> {
 //        A[index].weight = newKey;
 //        heapify(index);
 //    }
+
+    public void update(int index){
+        heapify(index);
+    }
 
 }

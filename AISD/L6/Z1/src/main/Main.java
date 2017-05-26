@@ -32,11 +32,12 @@ public class Main {
             graph.edges[i].src = Integer.parseInt(parts[0]);
             graph.edges[i].dest = Integer.parseInt(parts[1]);
             graph.edges[i].weight = Double.parseDouble(parts[2]);
+            graph.matrix[Integer.parseInt(parts[0])][Integer.parseInt(parts[1])] = Double.parseDouble(parts[2]);
         }
-
 
         graph.KruskaMST();
         graph.printSumWeight();
+        graph.PrimMST();
 
     }
 }

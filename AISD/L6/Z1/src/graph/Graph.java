@@ -8,14 +8,16 @@ import main.MyQueue;
 
 public class Graph {
 
-    private int V, E;
+    public int V, E;
     public Edge[] edges;
     public double[][] matrix;
 
     public Graph(int V, int E){
         matrix = new double[V][V];
         for (int i = 0; i<matrix.length; i++){
-            matrix[i][i] = 0;
+            for (int j = 0; j<V; j++){
+                matrix[i][j] = 0;
+            }
         }
         this.E = E;
         this.V = V;
@@ -77,31 +79,60 @@ public class Graph {
                 union(subsets,x,y);
             }
         }
-        System.out.println("Following are the edges in constructed MST");
+        System.out.println("Kruska MST");
         for (i = 0; i < e; ++i){
             System.out.println(result[i].src+" -- "+result[i].dest + " weight: "+result[i].weight);
         }
     }
 
-    public void PrimMST() {
+    public void PrimMST() throws Exception {
 
-        int[] MST = new int[V];
+        // tablica skąd prowadzona jest krawędź
+        int parent[] = new int[V];
+
+        // tablica wierzchołków które już należą do MST
+        boolean[] mstSet = new boolean[V];
+
+        for(int i = 0; i<V; i++){
+            mstSet[i] = false;
+        }
+
+        // tablica wierzchołków jeszcze nie zawartych w MST
         Vertex[] NotInMST = new Vertex[V];
         for (int i = 0; i<V; i++){
-            // dla kazdego wierzcholka znajdujemy najmniejsza wage krawedzi
+            // dla kazdego wierzcholka ustawiamy wage na infinity
             double weight = Double.MAX_VALUE;
-            for(int j = 0; j < matrix[i].length; j++){
-                if(i != j){
-                    if(matrix[i][j] < weight){
-                        weight = matrix[i][j];
-                    }
-                }
-            }
             NotInMST[i] = new Vertex(i,weight);
         }
         NotInMST[0].weight = 0;
         MyQueue<Vertex> heap = new MyQueue<>(NotInMST);
 
+        parent[0] = -1;
+        for (int count = 0; count < V-1; count++){
+
+            // Wyciągnij wierzchołek o najmniejszej wadze.
+            Vertex u = heap.heap_Extraxt_Max();
+
+            // zaznacz ze wierzcholek juz wystapil
+            mstSet[u.id] = true;
+
+            // dla wszystkich wierzchołków do których jest poprowadzona krawędź i nie należą już do MST
+            for (int v = 0; v < V; v++){
+                if(matrix[u.id][v] != 0.0 && !mstSet[v]){
+
+                    // znaleźć te wierzchołki w kopcu i zmniejszyć im weight( jesli jest mniejsza)
+                    for (int i = 0; i < heap.A.length; i++){
+                        if(heap.A[i].id == v && matrix[u.id][v] < heap.A[i].weight ){
+                            heap.A[i].weight = matrix[u.id][v];
+                            heap.update(i);
+                            parent[heap.A[i].id] = u.id;
+                        }
+                    }
+                }
+            }
+        }
+        System.out.println("Edge    Weight   PrimMST");
+        for (int i = 1; i < V; i++)System.out.println(parent[i]+" -- "+ i + " weight "+matrix[parent[i]][i]);
     }
 
     public void printSumWeight(){
@@ -113,5 +144,7 @@ public class Graph {
         }
         System.out.println("Suma wszystkich krawedzi: "+suma);
     }
+
+
 
 }

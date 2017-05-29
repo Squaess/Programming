@@ -12,12 +12,12 @@ import java.util.List;
  */
 
 public class ShortestPath {
-    // A utility function to find the vertex with minimum distance value,
-    // from the set of vertices not yet included in shortest path tree
+    // ilosc wierzchołków
     static int V;
 
-    int minDistance(double dist[], Boolean sptSet[]) {
-        // Initialize min value
+    private int minDistance(double dist[], Boolean sptSet[]) {
+        // zwracamy indeks wierzcholka do którego jeszcze nie jest skonczone obliczanie
+        // a dystans jest najmniejszy
         double min = Double.MAX_VALUE;
         int min_index=-1;
 
@@ -31,35 +31,30 @@ public class ShortestPath {
         return min_index;
     }
 
-    // A utility function to print the constructed distance array
+    // Wypisywanie samych distance
     void printSolution(double dist[]) {
-        System.out.println("Vertex   Distance from Source");
+        System.out.println("Vertex   Odległość od source");
         for (int i = 0; i < V; i++)
             System.out.println(i+" \t\t "+dist[i]);
     }
 
-    // Funtion that implements Dijkstra's single source shortest path
-    // algorithm for a graph represented using adjacency matrix
-    // representation
     void dijkstra(double graph[][], int src) {
         V = graph.length;
-        double dist[] = new double[V]; // The output array. dist[i] will hold
-        // the shortest distance from src to i
+        double dist[] = new double[V];
 
-        // sptSet[i] will true if vertex i is included in shortest
-        // path tree or shortest distance from src to i is finalized
+        // jeśli wierzchołek już ma znaleziony min dist to rue
         Boolean sptSet[] = new Boolean[V];
 
-        // Initialize all distances as INFINITE and stpSet[] as false
+        // Inicjalizacja
         for (int i = 0; i < V; i++)
         {
             dist[i] = Double.MAX_VALUE;
             sptSet[i] = false;
         }
 
-        // Distance of source vertex from itself is always 0
         dist[src] = 0;
 
+        // lista przetrzymująca trase dla danego wierzchołka
         ArrayList<Integer>[] parents = new ArrayList[V];
         for (int i = 0; i<V; i++){
             parents[i] = new ArrayList<>();
@@ -68,21 +63,17 @@ public class ShortestPath {
         // Find shortest path for all vertices
         for (int count = 0; count < V-1; count++)
         {
-            // Pick the minimum distance vertex from the set of vertices
-            // not yet processed. u is always equal to src in first
-            // iteration.
+            // Wybieramy minimalna odleglosc z wierchołków jeszcze nie zatwierdzonych
             int u = minDistance(dist, sptSet);
 
-            // Mark the picked vertex as processed
+            // Zatwierdzamy wierzcholek
             sptSet[u] = true;
 
-            // Update dist value of the adjacent vertices of the
-            // picked vertex.
+            // Update na dist dla wierchołków łączących sie z u
             for (int v = 0; v < V; v++)
 
-                // Update dist[v] only if is not in sptSet, there is an
-                // edge from u to v, and total weight of path from src to
-                // v through u is smaller than current value of dist[v]
+                // Robimy update tylko jęsli jeszcze nie jest w sptSet[v]
+                // i istnieje krawęðz (u,v) i jeśli now wartosc ma byc mniejsza od starej dla v
                 if (!sptSet[v] && graph[u][v]!=0 &&
                         dist[u] != Integer.MAX_VALUE &&
                         dist[u]+graph[u][v] < dist[v]) {

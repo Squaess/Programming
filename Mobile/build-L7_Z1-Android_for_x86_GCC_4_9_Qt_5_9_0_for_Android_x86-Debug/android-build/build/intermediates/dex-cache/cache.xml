@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/home/aedd/Documents/Programming/Programming/Mobile/build-L7_Z1-Android_for_x86_GCC_4_9_Qt_5_9_0_for_Android_x86-Debug/android-build/libs/QtAndroidBearer-bundled.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0e28f6521a00e5cb32d0d6045c1825213ad19836">
+        <dex dex="/home/aedd/Documents/Programming/Programming/Mobile/build-L7_Z1-Android_for_x86_GCC_4_9_Qt_5_9_0_for_Android_x86-Debug/android-build/build/intermediates/pre-dexed/debug/QtAndroidBearer-bundled_e11a7910d6eab1637b5313a44ea512208a899bda.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/aedd/Documents/Programming/Programming/Mobile/build-L7_Z1-Android_for_x86_GCC_4_9_Qt_5_9_0_for_Android_x86-Debug/android-build/libs/QtAndroid-bundled.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2964969e4638c5571987b80ad147bba0ed9ea6bb">
+        <dex dex="/home/aedd/Documents/Programming/Programming/Mobile/build-L7_Z1-Android_for_x86_GCC_4_9_Qt_5_9_0_for_Android_x86-Debug/android-build/build/intermediates/pre-dexed/debug/QtAndroid-bundled_3524fb24f6ada7690d69327c4650832c1c8bd3b3.jar" />
+    </item>
+
+</items>

@@ -1,0 +1,4 @@
+#Sat Jun 03 18:09:09 UTC 2017
+base.0=/home/aedd/Documents/Programming/Programming/Mobile/build-L7_Z1-Android_for_x86_GCC_4_9_Qt_5_9_0_for_Android_x86-Debug/android-build/build/intermediates/transforms/dex/debug/folders/1000/1f/main
+renamed.0=classes.dex
+file.0=/home/aedd/Documents/Programming/Programming/Mobile/build-L7_Z1-Android_for_x86_GCC_4_9_Qt_5_9_0_for_Android_x86-Debug/android-build/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex

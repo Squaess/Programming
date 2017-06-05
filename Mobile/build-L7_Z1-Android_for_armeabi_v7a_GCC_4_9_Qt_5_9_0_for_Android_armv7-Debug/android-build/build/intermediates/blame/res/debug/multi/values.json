@@ -1,0 +1,188 @@
+[
+    {
+        "outputFile": "/home/aedd/Documents/Programming/Programming/Mobile/build-L7_Z1-Android_for_armeabi_v7a_GCC_4_9_Qt_5_9_0_for_Android_armv7-Debug/android-build/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endLine": 309,
+                    "endColumn": 12,
+                    "endOffset": 43549
+                },
+                "from": {
+                    "file": "/home/aedd/Documents/Programming/Programming/Mobile/build-L7_Z1-Android_for_armeabi_v7a_GCC_4_9_Qt_5_9_0_for_Android_armv7-Debug/android-build/res/values/libs.xml",
+                    "position": {
+                        "startLine": 56,
+                        "startColumn": 4,
+                        "startOffset": 3373,
+                        "endLine": 363,
+                        "endColumn": 12,
+                        "endOffset": 46867
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 310,
+                    "startColumn": 4,
+                    "startOffset": 43554,
+                    "endLine": 339,
+                    "endColumn": 12,
+                    "endOffset": 46295
+                },
+                "from": {
+                    "file": "/home/aedd/Documents/Programming/Programming/Mobile/build-L7_Z1-Android_for_armeabi_v7a_GCC_4_9_Qt_5_9_0_for_Android_armv7-Debug/android-build/res/values/libs.xml",
+                    "position": {
+                        "startLine": 26,
+                        "startColumn": 4,
+                        "startOffset": 627,
+                        "endLine": 55,
+                        "endColumn": 12,
+                        "endOffset": 3368
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 340,
+                    "startColumn": 4,
+                    "startOffset": 46300,
+                    "endLine": 342,
+                    "endColumn": 12,
+                    "endOffset": 46349
+                },
+                "from": {
+                    "file": "/home/aedd/Documents/Programming/Programming/Mobile/build-L7_Z1-Android_for_armeabi_v7a_GCC_4_9_Qt_5_9_0_for_Android_armv7-Debug/android-build/res/values/libs.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 291,
+                        "endLine": 11,
+                        "endColumn": 12,
+                        "endOffset": 340
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 343,
+                    "startColumn": 4,
+                    "startOffset": 46354,
+                    "endLine": 354,
+                    "endColumn": 13,
+                    "endOffset": 46628
+                },
+                "from": {
+                    "file": "/home/aedd/Documents/Programming/Programming/Mobile/build-L7_Z1-Android_for_armeabi_v7a_GCC_4_9_Qt_5_9_0_for_Android_armv7-Debug/android-build/res/values/libs.xml",
+                    "position": {
+                        "startLine": 13,
+                        "startColumn": 5,
+                        "startOffset": 347,
+                        "endLine": 24,
+                        "endColumn": 13,
+                        "endOffset": 621
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 355,
+                    "startColumn": 4,
+                    "startOffset": 46633,
+                    "endLine": 357,
+                    "endColumn": 12,
+                    "endOffset": 46743
+                },
+                "from": {
+                    "file": "/home/aedd/Documents/Programming/Programming/Mobile/build-L7_Z1-Android_for_armeabi_v7a_GCC_4_9_Qt_5_9_0_for_Android_armv7-Debug/android-build/res/values/libs.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endLine": 4,
+                        "endColumn": 12,
+                        "endOffset": 165
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 358,
+                    "startColumn": 4,
+                    "startOffset": 46748,
+                    "endColumn": 107,
+                    "endOffset": 46851
+                },
+                "from": {
+                    "file": "/home/aedd/Qt/5.9/android_armv7/src/android/java/res/values/strings.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 319,
+                        "endColumn": 107,
+                        "endOffset": 422
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 359,
+                    "startColumn": 4,
+                    "startOffset": 46856,
+                    "endColumn": 121,
+                    "endOffset": 46973
+                },
+                "from": {
+                    "file": "/home/aedd/Qt/5.9/android_armv7/src/android/java/res/values/strings.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 197,
+                        "endColumn": 121,
+                        "endOffset": 314
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 360,
+                    "startColumn": 4,
+                    "startOffset": 46978,
+                    "endColumn": 111,
+                    "endOffset": 47085
+                },
+                "from": {
+                    "file": "/home/aedd/Qt/5.9/android_armv7/src/android/java/res/values/strings.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 85,
+                        "endColumn": 111,
+                        "endOffset": 192
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 361,
+                    "startColumn": 4,
+                    "startOffset": 47090,
+                    "endColumn": 84,
+                    "endOffset": 47170
+                },
+                "from": {
+                    "file": "/home/aedd/Qt/5.9/android_armv7/src/android/java/res/values/strings.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 427,
+                        "endColumn": 84,
+                        "endOffset": 507
+                    }
+                }
+            }
+        ]
+    }
+]

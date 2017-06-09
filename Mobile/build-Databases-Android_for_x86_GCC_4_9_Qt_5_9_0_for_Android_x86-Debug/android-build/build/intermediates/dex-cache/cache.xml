@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/home/aedd/Documents/Programming/Programming/Mobile/build-Databases-Android_for_x86_GCC_4_9_Qt_5_9_0_for_Android_x86-Debug/android-build/libs/QtAndroid-bundled.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2964969e4638c5571987b80ad147bba0ed9ea6bb">
+        <dex dex="/home/aedd/Documents/Programming/Programming/Mobile/build-Databases-Android_for_x86_GCC_4_9_Qt_5_9_0_for_Android_x86-Debug/android-build/build/intermediates/pre-dexed/debug/QtAndroid-bundled_8adbaa5e51f44182c390c597bd7128c1b6f93a31.jar" />
+    </item>
+
+</items>

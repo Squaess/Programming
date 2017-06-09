@@ -44,15 +44,16 @@ public class Z2Forwarder {
 	class Receiver extends Thread {
 
 		public void addToBuffer(DatagramPacket packet) {
+			
 			if(random.nextDouble() > reliability) return; // UTRATA PAKIETU
 			int i;
 			synchronized(buffer) {
-				for(i=0; i<capacity && buffer[i]!= null ; i++);
-				if(i<capacity) {
-					delay[i]=minDelay
-					    +(int)(random.nextDouble()*(maxDelay-minDelay));
-					buffer[i]=packet;
-				} 
+				for(i = 0; i < capacity && buffer[i] !=  null; i++);
+					if(i<capacity) {
+						delay[i]=minDelay
+					    	+(int)(random.nextDouble()*(maxDelay-minDelay));
+						buffer[i]=packet;
+					} 
 			}
 		}
 
@@ -60,18 +61,13 @@ public class Z2Forwarder {
 		public void run() {
 		    while(true)
 			{
-		        DatagramPacket packet=
-		           new DatagramPacket(new byte[datagramSize], datagramSize);
-		        try
-			    {
-				socket.receive(packet);
-				addToBuffer(packet);
-				while(random.nextDouble()< duplicatePpb) addToBuffer(packet);
-
-			    }
-		        catch(java.io.IOException e)
-			    {
-				System.out.println("Forwader.Receiver.run: "+e);
+		        DatagramPacket packet = new DatagramPacket(new byte[datagramSize], datagramSize);
+		        try {
+					socket.receive(packet);
+					addToBuffer(packet);
+					while(random.nextDouble()< duplicatePpb) addToBuffer(packet);
+			    } catch(java.io.IOException e) {
+					System.out.println("Forwader.Receiver.run: "+e);
 			    }
 			}
 		}
@@ -79,19 +75,16 @@ public class Z2Forwarder {
 
 	class Sender extends Thread {
 
-		void checkBuffer()
-		throws java.io.IOException {
-			synchronized(buffer)
-			    {
+		void checkBuffer() throws java.io.IOException {
+			synchronized(buffer) {
 				int i;
-				for(i=0; i<capacity; i++)
-				    if(buffer[i]!=null) 
-					{
+				for(i = 0; i < capacity; i++)
+				    if(buffer[i]!=null) {
 					    delay[i]-=sleepTime;
 					    if(delay[i]<=0)
 						{
-		                                    buffer[i].setPort(destinationPort);
-		                                    socket.send(buffer[i]);
+		                    buffer[i].setPort(destinationPort);
+		                    socket.send(buffer[i]);
 						    buffer[i]=null;
 						}
 					}
@@ -100,20 +93,16 @@ public class Z2Forwarder {
 
 
 		public void run() {
-			try
-			    {
-				while(true)
-				    {
+			try {
+				while(true) {
 					checkBuffer();
 					sleep(sleepTime);
-				    }
-			    }
-			catch(Exception e)
-			    {
+				}
+			}
+			catch(Exception e) {
 				System.out.println("Forwader.Sender.run: "+e);
-			    }
+			}
 		}
-
 	}
 
 

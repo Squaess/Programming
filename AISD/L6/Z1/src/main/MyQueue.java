@@ -72,12 +72,12 @@ public class MyQueue <T extends Comparable<T>> {
     }
 
     public void insert(T value) throws Exception {
-        if(heapSize>= A.length){
+        if(heapSize >= A.length){
             throw new Exception("Queue is full");
         }
         heapSize++;
         int i = heapSize;
-        while(i>0 && A[parent(i)].compareTo(value) == 1) {
+        while( i>0 && A[parent(i)].compareTo(value) == 1) {
             A[i] = A[parent(i)];
             i = parent(i);
         }

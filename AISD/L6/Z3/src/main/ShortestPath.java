@@ -14,6 +14,7 @@ import java.util.List;
 public class ShortestPath {
     // ilosc wierzchołków
     static int V;
+    static Vertex vertexs[];
 
     private int minDistance(double dist[], Boolean sptSet[]) {
         // zwracamy indeks wierzcholka do którego jeszcze nie jest skonczone obliczanie
@@ -38,71 +39,95 @@ public class ShortestPath {
             System.out.println(i+" \t\t "+dist[i]);
     }
 
-    void dijkstra(double graph[][], int src) {
+    private void dijkstra(double graph[][], int src) throws Exception {
         V = graph.length;
+        vertexs = new Vertex[V];
         double dist[] = new double[V];
 
         // jeśli wierzchołek już ma znaleziony min dist to rue
         Boolean sptSet[] = new Boolean[V];
 
+
         // Inicjalizacja
         for (int i = 0; i < V; i++)
         {
             dist[i] = Double.MAX_VALUE;
+            vertexs[i] = new Vertex(i,Double.MAX_VALUE);
             sptSet[i] = false;
         }
 
         dist[src] = 0;
+        vertexs[src].weight = 0;
+        MyQueue queue = new MyQueue(vertexs);
+        Vertex ver =(Vertex) queue.heap_max();
+        System.out.println(ver.weight);
 
         // lista przetrzymująca trase dla danego wierzchołka
         ArrayList<Integer>[] parents = new ArrayList[V];
+
         for (int i = 0; i<V; i++){
             parents[i] = new ArrayList<>();
         }
 
         // Find shortest path for all vertices
-        for (int count = 0; count < V-1; count++)
-        {
+        for (int count = 0; count < V-1; count++) {
+
             // Wybieramy minimalna odleglosc z wierchołków jeszcze nie zatwierdzonych
-            int u = minDistance(dist, sptSet);
+            //int u = minDistance(dist, sptSet);
+            Vertex vert = (Vertex) queue.heap_Extraxt_Max();
+            System.out.println("Najmniejszy V: "+vert.id);
 
             // Zatwierdzamy wierzcholek
-            sptSet[u] = true;
+            //sptSet[u] = true;
+            sptSet[vert.id] = true;
 
             // Update na dist dla wierchołków łączących sie z u
             for (int v = 0; v < V; v++)
 
                 // Robimy update tylko jęsli jeszcze nie jest w sptSet[v]
                 // i istnieje krawęðz (u,v) i jeśli now wartosc ma byc mniejsza od starej dla v
-                if (!sptSet[v] && graph[u][v]!=0 &&
-                        dist[u] != Integer.MAX_VALUE &&
-                        dist[u]+graph[u][v] < dist[v]) {
-                    dist[v] = dist[u] + graph[u][v];
+                if (!sptSet[v] && graph[vert.id][v]!=0 &&
+                        dist[vert.id] != Integer.MAX_VALUE &&
+                        dist[vert.id]+graph[vert.id][v] < dist[v]) {
+                    dist[v] = dist[vert.id] + graph[vert.id][v];
+                    System.out.println("\t"+vert.id+"-->"+v+" "+graph[vert.id][v]);
+                    // zmiana w kolejce
+                    System.out.println("\t"+"Update na "+v + " wprowadzam wage "+ (vert.weight+graph[vert.id][v]));
+                    queue.update(v, vert.weight+graph[vert.id][v]);
+                    //queue.print();
                     parents[v].clear();
-                    parents[v].addAll(parents[u]);
-                    parents[v].add(u);
+                    parents[v].addAll(parents[vert.id]);
+                    parents[v].add(vert.id);
                 }
         }
 
         // print the constructed distance array
         printSolution(dist);
-        printPaths(parents);
+        printPaths(parents,graph);
     }
 
-    private void printPaths(ArrayList<Integer>[] parents) {
+    private void printPaths(ArrayList<Integer>[] parents, double graph[][]) {
         System.out.println("All shortest paths:");
         for(int j = 0; j < parents.length; j++){
-            for (int i:parents[j]){
-                System.out.print(i+" ");
+            double sum = 0;
+            for (int i = 0; i< parents[j].size()-1; i++){
+                System.out.print(parents[j].get(i)+"---"+ graph[parents[j].get(i)][parents[j].get(i+1)] +"---> "+parents[j].get(i+1)+"\t");
+                sum += graph[parents[j].get(i)][parents[j].get(i+1)];
             }
-            System.out.print(j);
+            if(parents[j].isEmpty()){
+                System.out.print(j+" "+sum);
+            } else {
+                sum += graph[parents[j].get(parents[j].size()-1)][j];
+                System.out.print(parents[j].get(parents[j].size()-1)+"---"+graph[parents[j].get(parents[j].size()-1)][j]+"--->" + j+" "+sum);
+            }
             System.out.print("\n");
         }
     }
 
     // Driver method
-    public static void main (String[] args) throws IOException {
-        /* Let us create the example graph discussed above */
+    public static void main (String[] args) throws Exception {
+
+
         FileReader fr = new FileReader("./data.txt");
         BufferedReader input = new BufferedReader(fr);
 
@@ -110,11 +135,13 @@ public class ShortestPath {
         int E = Integer.parseInt(input.readLine());
 
         double graph[][] = new double[V][V];
+
         for (int i = 0; i < V; i++){
             for ( int j = 0; j<V; j++){
                 graph[i][j] = 0;
             }
         }
+
         String line;
         for (int i = 0; i < E; i++){
             line = input.readLine();
@@ -125,6 +152,8 @@ public class ShortestPath {
             graph[v1][v2] = weight;
         }
         ShortestPath t = new ShortestPath();
-        t.dijkstra(graph, 0);
+        t.dijkstra(graph, 1);
+
+
     }
 }

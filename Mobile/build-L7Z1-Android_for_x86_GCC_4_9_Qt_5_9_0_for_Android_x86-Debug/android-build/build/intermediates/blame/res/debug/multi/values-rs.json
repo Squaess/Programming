@@ -1,0 +1,64 @@
+[
+    {
+        "outputFile": "/home/aedd/Documents/Programming/Programming/Mobile/build-L7Z1-Android_for_x86_GCC_4_9_Qt_5_9_0_for_Android_x86-Debug/android-build/build/intermediates/incremental/mergeDebugResources/merged.dir/values-rs/values-rs.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 117,
+                    "endOffset": 168
+                },
+                "from": {
+                    "file": "/home/aedd/Qt/5.9/android_x86/src/android/java/res/values-rs/strings.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 290,
+                        "endColumn": 117,
+                        "endOffset": 403
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 173,
+                    "endColumn": 116,
+                    "endOffset": 285
+                },
+                "from": {
+                    "file": "/home/aedd/Qt/5.9/android_x86/src/android/java/res/values-rs/strings.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 173,
+                        "endColumn": 116,
+                        "endOffset": 285
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 290,
+                    "endColumn": 117,
+                    "endOffset": 403
+                },
+                "from": {
+                    "file": "/home/aedd/Qt/5.9/android_x86/src/android/java/res/values-rs/strings.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 117,
+                        "endOffset": 168
+                    }
+                }
+            }
+        ]
+    }
+]

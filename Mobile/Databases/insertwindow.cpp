@@ -24,3 +24,19 @@ void InsertWindow::on_addB_clicked()
   qDebug() << data;
   emit plsAddStud(data);
 }
+
+void InsertWindow::on_addGB_clicked()
+{
+    QString data = "";
+    data += ui->sidF->text()+" ";
+    data += ui->cidF->text()+" ";
+    data += ui->gidF->text();
+    emit plsAddGrade(data);
+}
+
+void InsertWindow::on_addCB_clicked()
+{
+    QString data = "";
+    data += ui->cnameF->text();
+    emit plsAddCourse(data);
+}

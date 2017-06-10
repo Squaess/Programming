@@ -17,9 +17,15 @@ public:
 
 signals:
     void plsAddStud(QString data);
+    void plsAddGrade(QString data);
+    void plsAddCourse(QString data);
 
 private slots:
     void on_addB_clicked();
+
+    void on_addGB_clicked();
+
+    void on_addCB_clicked();
 
 private:
     Ui::InsertWindow *ui;

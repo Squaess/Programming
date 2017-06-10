@@ -26,15 +26,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    insertwindow.cpp
+    insertwindow.cpp \
+    deletewindow.cpp \
+    searchwindow.cpp
 
 HEADERS += \
         mainwindow.h \
-    insertwindow.h
+    insertwindow.h \
+    deletewindow.h \
+    searchwindow.h
 
 FORMS += \
         mainwindow.ui \
-    insertwindow.ui
+    insertwindow.ui \
+    deletewindow.ui \
+    searchwindow.ui
 
 CONFIG += mobility
 MOBILITY = 

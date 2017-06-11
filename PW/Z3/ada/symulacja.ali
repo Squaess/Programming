@@ -1,0 +1,73 @@
+V "GNAT Lib v7"
+P SS ZX
+
+RN
+RV NO_IO
+RV NO_OBSOLESCENT_FEATURES
+RV SPARK_05
+
+U symulacja%b		symulacja.adb		44cda4b7 NE OO PK IL
+W ada%s			ada.ads			ada.ali
+W ada.strings%s		a-string.ads		a-string.ali
+W ada.strings.bounded%s	a-strbou.adb		a-strbou.ali
+W ada.strings.unbounded%s  a-strunb.adb		a-strunb.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+
+U symulacja%s		symulacja.ads		bae0cfdc EE NE OO PK IL
+
+D ada.ads		20170528165452 76789da1 ada%s
+D a-charac.ads		20170528165452 2d3ec45b ada.characters%s
+D a-chlat1.ads		20170528165452 66457d31 ada.characters.latin_1%s
+D a-except.ads		20170528165455 291912d5 ada.exceptions%s
+D a-finali.ads		20170528165452 bf4f806b ada.finalization%s
+D a-ioexce.ads		20170528165452 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20170528165455 119b8fb3 ada.streams%s
+D a-string.ads		20170528165452 90ac6797 ada.strings%s
+D a-strbou.ads		20170528165455 53ab54ae ada.strings.bounded%s
+D a-strmap.ads		20170528165452 e8bb714a ada.strings.maps%s
+D a-strsup.ads		20170528165452 a27dcb33 ada.strings.superbounded%s
+D a-strunb.ads		20170528165452 ecdfa332 ada.strings.unbounded%s
+D a-tags.ads		20170528165455 01f5e3ef ada.tags%s
+D a-textio.ads		20170528165452 386df5d4 ada.text_io%s
+D a-unccon.ads		20170528165452 31484697 ada.unchecked_conversion%s
+D interfac.ads		20170528165452 5ab55268 interfaces%s
+D i-cstrea.ads		20170528165452 e53d8b8e interfaces.c_streams%s
+D symulacja.ads		20170610230207 bae0cfdc symulacja%s
+D symulacja.adb		20170610230157 79346923 symulacja%b
+D system.ads		20170528165452 4635ec04 system%s
+D s-atocou.ads		20170528165452 b45c2d8d system.atomic_counters%s
+D s-crtl.ads		20170528165452 0ebbdb71 system.crtl%s
+D s-exctab.ads		20170528165452 54135002 system.exception_table%s
+D s-ficobl.ads		20170528165455 078245e4 system.file_control_block%s
+D s-finmas.ads		20170528165455 7811a767 system.finalization_masters%s
+D s-finroo.ads		20170528165452 4ff27390 system.finalization_root%s
+D s-parame.ads		20170528165452 7e2a0d7f system.parameters%s
+D s-secsta.ads		20170528165452 9751b57e system.secondary_stack%s
+D s-soflin.ads		20170528165452 14e1eb6c system.soft_links%s
+D s-stache.ads		20170528165452 a37c21ec system.stack_checking%s
+D s-stalib.ads		20170528165452 09bd3940 system.standard_library%s
+D s-stoele.ads		20170528165452 2dc34a04 system.storage_elements%s
+D s-stopoo.ads		20170528165452 b16154c2 system.storage_pools%s
+D s-stposu.ads		20170528165452 97a6219c system.storage_pools.subpools%s
+D s-stratt.ads		20170528165455 aedef97e system.stream_attributes%s
+D s-traent.ads		20170528165452 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20170528165452 34867c83 system.unsigned_types%s
+D s-wchcon.ads		20170528165452 1b7d22d2 system.wch_con%s
+X 1 ada.ads
+16K9*Ada 20e8 19|2r6 3r6 4r6 4r22 9r9
+X 8 a-string.ads
+16K13*Strings 35e16 19|2r10 3r10
+X 9 a-strbou.ads
+39K21*Bounded 914e24 19|3w18
+X 12 a-strunb.ads
+76K21*Unbounded 490e26 19|2w18
+X 14 a-textio.ads
+49K13*Text_IO 471e16 19|4w10 4r26 9r13
+242U14*Put 19|9s21
+263U14*Put_Line 19|14s9
+X 18 symulacja.ads
+3K9*symulacja 8l5 8e14 19|6b14 16l5 16t14
+6U15*start 19|12b15 15l9 15t14
+X 19 symulacja.adb
+7U15 cls 7b15 10t8
+

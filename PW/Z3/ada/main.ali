@@ -1,0 +1,18 @@
+V "GNAT Lib v7"
+M P W=b
+P ZX
+
+RN
+
+U main%b		main.adb		93fc844b NE OO SU
+W symulacja%s		symulacja.adb		symulacja.ali
+
+D main.adb		20170610230050 291c4b97 main%b
+D symulacja.ads		20170610230207 bae0cfdc symulacja%s
+D system.ads		20170528165452 4635ec04 system%s
+X 1 main.adb
+3U12*Main 3b12 6l6 6t10
+X 2 symulacja.ads
+3K9*symulacja 1|1w7 5r6 2|8e14
+6U15*start 1|5s16
+

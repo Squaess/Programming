@@ -13,7 +13,7 @@ public class HTTPClient {
         http.sendGet();
         System.out.println("Testing POST");
         try{
-            http.sendPost();
+            http.sendHead();
         } catch (Exception e){
             e.printStackTrace();
         }

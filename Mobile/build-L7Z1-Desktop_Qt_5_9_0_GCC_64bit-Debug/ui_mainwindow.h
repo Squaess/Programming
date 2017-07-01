@@ -74,7 +74,7 @@ public:
 
         lineEdit = new QLineEdit(centralWidget);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setMaximumSize(QSize(200, 16777215));
+        lineEdit->setMaximumSize(QSize(500, 16777215));
         lineEdit->setStyleSheet(QStringLiteral("font: 16pt;"));
         lineEdit->setAlignment(Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing);
 

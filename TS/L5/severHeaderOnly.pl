@@ -12,15 +12,11 @@
 
   while (my $c = $d->accept) {
       while (my $r = $c->get_request) {
-          if ($r->method eq 'GET') {
+          
               
-              $file_s= "./index.html";    # index.html - jakis istniejacy plik
-              $c->send_file_response($file_s);
-
-          }
-          else {
-              $c->send_error(RC_FORBIDDEN)
-          }
+        $response = HTTP::Response->new(200,'OK');
+        $response->content($r->as_string);
+        $c->send_response($response);
 
       }
       $c->close;

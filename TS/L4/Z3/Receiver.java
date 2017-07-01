@@ -7,8 +7,8 @@ public class Receiver {
     private InetAddress localHost;
     private int destinationPort;
     private DatagramSocket socket;
-    // CZAS PO JAKIM PONAWIANA JEST PROSBA O NASTEPNY PAKIET
-    private int sleepTime = 7000;
+    // CZAS PO JAKIM czas PONAWIANE jest wyslanie pakietu
+    private int sleepTime = 10000;
 
     private ReceiverThread receiver;
     private ResendThread resender;
@@ -67,9 +67,9 @@ public class Receiver {
                             expected++;
                         }
                         // wysylamy ostatni pakiet jaki mamy wyswietlony
-                        packet.setPort(destinationPort);
-                        socket.send(packet);
-                        System.out.println("next: "+ expected);
+                        // packet.setPort(destinationPort);
+                        // socket.send(packet);
+                        // System.out.println("next: "+ expected);
                     }
         		}
         	}
@@ -81,27 +81,45 @@ public class Receiver {
 
     }
 
+    // class ResendThread extends Thread {
+    //     int waiting = 0;
+    //     public void run() {
+    //         try {
+    //             while(true){
+    //                 sleep(sleepTime);
+    //                 if(waiting == expected){
+    //                     Z2Packet p = new Z2Packet(4+1);
+    //                     p.setIntAt(waiting-1,0);
+    //                     p.data[4] = (byte) 'R';
+    //                     DatagramPacket packet = new DatagramPacket(p.data, p.data.length, localHost, destinationPort);
+    //                     socket.send(packet);
+    //                     System.out.println("Ponawiam prosbe "+ waiting);
+    //                 } else {
+    //                     waiting = expected;
+    //                 }
+    //             }
+    //         } catch (Exception e){
+    //             e.printStackTrace();
+    //         }
+    //     }
+    // }
     class ResendThread extends Thread {
-        int waiting = 0;
+    
         public void run() {
             try {
                 while(true){
                     sleep(sleepTime);
-                    if(waiting == expected){
-                        Z2Packet p = new Z2Packet(4+1);
-                        p.setIntAt(waiting-1,0);
-                        p.data[4] = (byte) 'R';
-                        DatagramPacket packet = new DatagramPacket(p.data, p.data.length, localHost, destinationPort);
-                        socket.send(packet);
-                        System.out.println("Ponawiam prosbe "+ waiting);
-                    } else {
-                        waiting = expected;
-                    }
+                    Z2Packet p = new Z2Packet(4+1);
+                    p.setIntAt(expected-1,0);
+                    p.data[4] = (byte) 'R';
+                    DatagramPacket packet = new DatagramPacket(p.data, p.data.length, localHost, destinationPort);
+                    socket.send(packet);
+                    System.out.println("Wylysam prosbe: "+ expected);
+                    
                 }
             } catch (Exception e){
                 e.printStackTrace();
             }
         }
     }
-
 }
